@@ -9,8 +9,5 @@
         <module name="HW1" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="your-artifact-id" target="1.7" />
-    </bytecodeTargetLevel>
   </component>
 </project>

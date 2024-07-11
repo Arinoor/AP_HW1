@@ -8,6 +8,7 @@ public class HomePage extends Page {
             "[2] Register\n\n";
 
     public HomePage() {
+        super();
         showMessage();
         run();
     }
@@ -22,7 +23,7 @@ public class HomePage extends Page {
                 new RegisterPage();
                 break;
             default:
-                System.out.println("Invalid choice");
+                invalidChoice();
                 run();
                 break;
         }
