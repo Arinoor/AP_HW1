@@ -1,14 +1,14 @@
-import java.util.Locale;
+package Page;
 
 public class HomePage extends Page {
 
-    private String message = "Welcome to course registration system\n" +
+    private static String message = "Welcome to course registration system\n" +
             "Please login or register\n" +
             "[1] Login\n" +
-            "[2] Register\n\n";
+            "[2] Register\n";
 
     public HomePage() {
-        super();
+        super(message);
         showMessage();
         run();
     }

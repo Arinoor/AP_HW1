@@ -1,3 +1,5 @@
+package Exception;
+
 public class NavigationException extends Exception {
 
     public NavigationException() {

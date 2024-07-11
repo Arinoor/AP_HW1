@@ -1,12 +1,16 @@
-public class RegisterPage extends Page {
+package Page;
 
-    private String message = "Welcome to Register page\n" +
+import Exception.*;
+
+public class StudentLoginPage extends Page {
+
+    private static String message = "Welcome to Student Login page\n" +
             "Please enter you student number and password\n" +
             "Enter 'back' to go back to the previous menu\n" +
-            "Enter 'cancel' to restart the process\n\n";
+            "Enter 'cancel' to restart the process\n";
 
-    public RegisterPage() {
-        super();
+    public StudentLoginPage() {
+        super(message);
         showMessage();
         run();
     }
@@ -15,16 +19,16 @@ public class RegisterPage extends Page {
         try {
             int studentId = getStudentId();
             String password = getPassword();
-            // TODO ask server to register user
+            // TODO ask server to log in user
             new StudentHomePage(studentId);
 
         } catch (NavigationBackException e) {
-            new HomePage();
+            new LoginPage();
         } catch (NavigationCancelException e) {
-            showMessage("\nRegister again\n");
+            showMessage("\nLogin again\n");
             run();
         } catch (Exception e) {
-            showMessage("\n" + e.getMessage() + "\n");
+            showMessage(e.getMessage() + "\n");
             run();
         }
     }
@@ -42,5 +46,6 @@ public class RegisterPage extends Page {
         // TODO: add validation password
         return input;
     }
+
 
 }

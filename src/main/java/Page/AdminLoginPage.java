@@ -1,12 +1,16 @@
+package Page;
+
+import Exception.*;
+
 public class AdminLoginPage extends Page {
 
-    private String message = "Welcome to Admin Login page\n" +
+    private static String message = "Welcome to Admin Login page\n" +
             "Please enter your username and password\n" +
             "Enter 'back' to go back to the previous menu\n" +
             "Enter 'cancel' to restart the process\n";
 
     public AdminLoginPage() {
-        super();
+        super(message);
         showMessage();
         run();
     }
