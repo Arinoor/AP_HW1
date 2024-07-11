@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e4f37ad-2837-4f54-8768-279122dd0af6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Client.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/HomePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="8e4f37ad-2837-4f54-8768-279122dd0af6" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,8 +34,8 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "client-scenario",
-    "last_opened_file_path": "C:/Users/ASUS/Desktop/Sharif/AP/HW1",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/ASUS/Desktop/Sharif/AP/AP_HW1",
     "settings.editor.selected.configurable": "http.proxy"
   }
 }]]></component>
