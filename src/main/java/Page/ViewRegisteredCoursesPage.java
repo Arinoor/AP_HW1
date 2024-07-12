@@ -1,9 +1,11 @@
 package Page;
 
-import Model.Course;
+import Model.*;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 import Exception.*;
-import System.Server;
+import System.*;
 
 public class ViewRegisteredCoursesPage extends Page {
 
@@ -14,6 +16,7 @@ public class ViewRegisteredCoursesPage extends Page {
             """;
 
     private final int studentId;
+    private ArrayList<Course> registeredCourses;
 
     public ViewRegisteredCoursesPage(int studentId) {
         super(message);
@@ -29,26 +32,36 @@ public class ViewRegisteredCoursesPage extends Page {
             new DropCourseConfirmationPage(studentId, dropCourseIds);
         } catch (NavigationBackException e) {
             new StudentHomePage(studentId);
+        } catch (ValidationException e) {
+            showMessage("\n" + e.getMessage() + "\n");
+            run();
         } catch (Exception e) {
-            showMessage(e.getMessage() + "\n");
+            showMessage("\nUnexpected error occurred\n" + e.getMessage() + "\n");
             run();
         }
     }
 
-    public ArrayList<Integer> getDropCourseIds() throws NavigationBackException {
+    public ArrayList<Integer> getDropCourseIds() throws NavigationBackException, ValidationException, SQLException, DataBaseException {
         String input = getInput("Enter course ids to drop: ");
         checkBack(input);
-        String[] ids = input.split(" ");
-        ArrayList<Integer> dropCourseIds = new ArrayList<>();
-        for(String id: ids) {
-            //TODO: add validation for course id
-            dropCourseIds.add(Integer.parseInt(id));
+        String[] Ids = input.split(" ");
+        ArrayList<Integer> dropCourseIds = Validation.getValidatedDropCourseIds(Ids, getRegisteredCourses());
+        if(dropCourseIds.isEmpty()) {
+            throw new ValidationException("Please select at least one valid course id to drop or enter 'back' to go back to the previous page\n");
         }
         return dropCourseIds;
     }
 
-    private void showRegisteredCourses() {
-        ArrayList<Course> registeredCourses = Server.getRegisteredCoursesByStudent(studentId);
+    private void showRegisteredCourses() throws SQLException, DataBaseException {
+        ArrayList<Course> registeredCourses = getRegisteredCourses();
         showCourses(registeredCourses);
     }
+
+    private ArrayList<Course> getRegisteredCourses() throws SQLException, DataBaseException {
+        if(registeredCourses == null) {
+            registeredCourses = Server.getRegisteredCourses(studentId);
+        }
+        return registeredCourses;
+    }
+
 }

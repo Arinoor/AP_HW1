@@ -12,14 +12,14 @@ public class Server {
 
     }
 
-    public static void registerCourses(int studentId, ArrayList<Integer> toRegisterCourseIds) throws ValidationException, SQLException {
+    public static void registerCourses(int studentId, ArrayList<Integer> toRegisterCourseIds) throws ValidationException, SQLException, DataBaseException {
         ArrayList<Course> toRegisterCourses = getCoursesByIds(toRegisterCourseIds);
-        ArrayList<Course> registeredCourses = getRegisteredCoursesByStudent(studentId);
+        ArrayList<Course> registeredCourses = getRegisteredCourses(studentId);
         for(Course course : toRegisterCourses) {
             registerCourse(studentId, course, registeredCourses);
         }
         for(int courseId : toRegisterCourseIds) {
-            // register course to database
+            DatabaseManager.registerCourse(studentId, courseId);
         }
     }
 
@@ -73,45 +73,61 @@ public class Server {
         }
     }
 
-    public static void dropCourses(int studentId, ArrayList<Integer> dropCourseIds) throws ValidationException {
+    public static void dropCourses(int studentId, ArrayList<Integer> dropCourseIds) throws ValidationException, SQLException, DataBaseException {
         for(int courseId : dropCourseIds) {
             dropCourse(studentId, courseId);
         }
         for(int courseId : dropCourseIds) {
-            // drop course from database
+            DatabaseManager.dropCourse(studentId, courseId);
         }
     }
 
-    private static void dropCourse(int studentId, int courseId) throws ValidationException {
-        if(!DataBaseManager.isRegistered(studentId, courseId)) {
+    private static void dropCourse(int studentId, int courseId) throws ValidationException, SQLException, DataBaseException {
+        if(!DatabaseManager.isRegistered(studentId, courseId)) {
             throw new ValidationException(String.format("Course %d is not registered by student %d", courseId, studentId));
         }
     }
 
 
-    public static ArrayList<Course> getCoursesByIds(ArrayList<Integer> courseIds) {
+    public static ArrayList<Course> getCoursesByIds(ArrayList<Integer> courseIds) throws SQLException, DataBaseException {
         ArrayList<Course> courses = new ArrayList<>();
         for(int courseId : courseIds) {
-            Course course = DataBaseManager.getCourseById(courseId);
+            Course course = DatabaseManager.getCourseById(courseId);
             courses.add(course);
         }
         return courses;
     }
 
-    public static ArrayList<Course> getRegisteredCoursesByStudent(int studentId) throws SQLException {
-        return DataBaseManager.getRegisteredCourses(studentId);
+    public static ArrayList<Course> getRegisteredCourses(int studentId) throws SQLException, DataBaseException {
+        return DatabaseManager.getRegisteredCourses(studentId);
     }
 
-    public static ArrayList<Course> getAvailableCourses(int studentId, int departmentId) throws SQLException {
-        return DataBaseManager.getAvailableCourses(studentId, departmentId);
+    public static ArrayList<Course> getAvailableCourses(int studentId, int departmentId) throws SQLException, DataBaseException {
+        return DatabaseManager.getAvailableCourses(studentId, departmentId);
     }
 
-    public static String getDepartmentName(int departmentId) {
-        return DataBaseManager.getDepartmentName(departmentId);
+    public static String getDepartmentName(int departmentId) throws SQLException, DataBaseException {
+        return DatabaseManager.getDepartmentName(departmentId);
     }
 
-    public static ArrayList<Department> getDepartments() {
-        return DataBaseManager.getDepartments();
+    public static ArrayList<Department> getDepartments() throws SQLException {
+        return DatabaseManager.getDepartments();
+    }
+
+    public static void loginStudent(int studentId, String password) throws SQLException, ValidationException {
+        DatabaseManager.loginStudent(studentId, password);
+    }
+
+    public static void loginAdmin(String username, String password) throws SQLException, ValidationException {
+        DatabaseManager.loginAdmin(username, password);
+    }
+
+    public static void register(int studentId, String password) throws SQLException, DataBaseException, ValidationException {
+        boolean isRegistered = DatabaseManager.isRegistered(studentId);
+        if(isRegistered) {
+            throw new ValidationException(String.format("Student %d is already registered", studentId));
+        }
+        DatabaseManager.register(studentId, password);
     }
 
     public static void main(String[] args) {

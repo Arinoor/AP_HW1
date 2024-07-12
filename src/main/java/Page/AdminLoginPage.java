@@ -1,6 +1,7 @@
 package Page;
 
 import Exception.*;
+import System.*;
 
 public class AdminLoginPage extends Page {
 
@@ -22,31 +23,34 @@ public class AdminLoginPage extends Page {
         try {
             String username = getUsername();
             String password = getPassword();
-            // TODO ask server to log in admin
+            Server.loginAdmin(username, password);
             new AdminHomePage();
         } catch (NavigationBackException e) {
             new LoginPage();
         } catch (NavigationCancelException e) {
             showMessage("\nLogin again\n");
             run();
+        } catch (ValidationException e) {
+            showMessage("\n" + e.getMessage() + "\n");
+            run();
         } catch (Exception e) {
-            showMessage(e.getMessage());
+            showMessage("\nUnexpected error occurred\n" + e.getMessage() + "\n");
             run();
         }
     }
 
 
-    private String getUsername() throws NavigationException {
+    private String getUsername() throws NavigationException, ValidationException {
         String input = getInput("Enter your username: ");
         checkBackOrCancel(input);
-        // TODO : check username validation
+        Validation.validateUsername(input);
         return input;
     }
 
-    private String getPassword() throws NavigationException {
+    private String getPassword() throws NavigationException, ValidationException {
         String input = getInput("Enter your password: ");
         checkBackOrCancel(input);
-        // TODO : check password validation
+        Validation.validatePassword(input);
         return input;
     }
 

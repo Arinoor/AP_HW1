@@ -14,7 +14,7 @@ public abstract class Page implements Runnable {
     }
 
     public Page(String message) {
-        System.out.println();
+        showMessage("\n---------------------------------------------\n");
         this.message = message;
     }
 
@@ -41,11 +41,11 @@ public abstract class Page implements Runnable {
     }
 
     public static void showMessage(String message) {
-        System.out.println(message);
+        System.out.println("\n" + message + "\n");
     }
 
     public static void invalidChoice() {
-        showMessage("Invalid choice\n");
+        showMessage("\nInvalid choice\n");
     }
 
     public static void checkBackOrCancel(String choice) throws NavigationBackException, NavigationCancelException {

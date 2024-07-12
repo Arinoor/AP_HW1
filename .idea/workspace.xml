@@ -5,10 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc0d07bb-de52-44ab-956a-2fb4833126a5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Exception/DataBaseException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/System/Validation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/System/DataBaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/System/DataBaseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Config/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Config/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Page/AdminLoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/AdminLoginPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Page/ChooseDepartmentToViewAvailableCoursesPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/ChooseDepartmentToViewAvailableCoursesPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Page/DropCourseConfirmationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/DropCourseConfirmationPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Page/Page.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/Page.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Page/RegisterCourseConfirmationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/RegisterCourseConfirmationPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Page/RegisterPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/RegisterPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Page/StudentLoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/StudentLoginPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Page/ViewAvailableCoursesPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/ViewAvailableCoursesPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Page/ViewRegisteredCoursesPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/ViewRegisteredCoursesPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/System/DataBaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/System/DatabaseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/System/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/System/Server.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,17 +50,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;server&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;http.proxy&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "server",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.General"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="Page" />

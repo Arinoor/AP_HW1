@@ -1,6 +1,7 @@
 package Page;
 
 import Exception.*;
+import System.*;
 
 public class StudentLoginPage extends Page {
 
@@ -21,31 +22,33 @@ public class StudentLoginPage extends Page {
         try {
             int studentId = getStudentId();
             String password = getPassword();
-            // TODO ask server to log in user
+            Server.loginStudent(studentId, password);
             new StudentHomePage(studentId);
-
         } catch (NavigationBackException e) {
             new LoginPage();
         } catch (NavigationCancelException e) {
             showMessage("\nLogin again\n");
             run();
+        } catch (ValidationException e) {
+            showMessage("\n" + e.getMessage() + "\n");
+            run();
         } catch (Exception e) {
-            showMessage(e.getMessage() + "\n");
+            showMessage("\nUnexpected error occurred\n" + e.getMessage() + "\n");
             run();
         }
     }
 
-    private int getStudentId() throws NavigationException {
+    private int getStudentId() throws NavigationException, ValidationException {
         String input = getInput("Enter your student number: ");
         checkBackOrCancel(input);
-        // TODO: add validation student number
+        Validation.validateStudentId(input);
         return Integer.parseInt(input);
     }
 
-    private String getPassword() throws NavigationException {
+    private String getPassword() throws NavigationException, ValidationException {
         String input = getInput("Enter your password: ");
         checkBackOrCancel(input);
-        // TODO: add validation password
+        Validation.validatePassword(input);
         return input;
     }
 

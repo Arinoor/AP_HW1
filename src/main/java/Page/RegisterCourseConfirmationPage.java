@@ -1,5 +1,6 @@
 package Page;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import Exception.*;
 import Model.Course;
@@ -44,13 +45,16 @@ public class RegisterCourseConfirmationPage extends Page {
                     invalidChoice();
                     run();
             }
+        } catch (ValidationException e) {
+            showMessage("\n" + e.getMessage() + "\n");
+            run();
         } catch (Exception e) {
-            showMessage(e.getMessage() + "\n");
+            showMessage("\nUnexpected error occurred\n" + e.getMessage() + "\n");
             run();
         }
     }
 
-    private void showRegisterCourses() {
+    private void showRegisterCourses() throws SQLException, DataBaseException {
         ArrayList<Course> registerCourses = Server.getCoursesByIds(registerCourseIds);
         showCourses(registerCourses);
     }
