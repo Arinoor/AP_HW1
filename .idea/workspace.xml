@@ -5,42 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc0d07bb-de52-44ab-956a-2fb4833126a5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Exception/NavigationBackException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Exception/NavigationCancelException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Exception/NavigationException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Page/AdminHomePage.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Page/AdminLoginPage.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Page/ChooseDepartmentToViewAvailableCoursesPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Page/DropCourseConfirmationPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Page/HomePage.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Page/LoginPage.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Page/Page.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Page/RegisterCourseConfirmationPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Page/RegisterPage.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Page/StudentHomePage.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Page/StudentLoginPage.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Page/ViewAvailableCoursesPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Page/ViewRegisteredCoursesPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/AdminHomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/AdminHomePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/AdminLoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/AdminLoginPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ClassTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/ClassTime.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CourseType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/CourseType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Day.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Day.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/HomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/HomePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/LoginPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/NavigationBackException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Exception/NavigationBackException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/NavigationCancelException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Exception/NavigationCancelException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/NavigationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Exception/NavigationException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Page.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/Page.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/RegisterPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/RegisterPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/StudentHomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/StudentHomePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/StudentLoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/StudentLoginPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
