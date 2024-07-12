@@ -6,7 +6,7 @@ import Exception.*;
 public class ChooseDepartmentToViewAvailableCoursesPage extends Page {
 
     private static String message = "Choose a department by its id to view its available courses\n" +
-            "Enter 'back' to go back to the previous menu\n" +;
+            "Enter 'back' to go back to the previous menu\n";
 
     private int studentId;
 
@@ -21,7 +21,7 @@ public class ChooseDepartmentToViewAvailableCoursesPage extends Page {
         try {
             showDepartments();
             int departmentId = getDepartmentId();
-            viewAvailableCourses(studentId, departmentId);
+            new ViewAvailableCoursesPage(studentId, departmentId);
         } catch (NavigationBackException e) {
             new StudentHomePage(studentId);
         } catch (Exception e) {
