@@ -2,6 +2,8 @@ package Page;
 
 import java.util.ArrayList;
 import Exception.*;
+import Model.Department;
+import System.Server;
 
 public class ChooseDepartmentToViewAvailableCoursesPage extends Page {
 
