@@ -99,7 +99,7 @@ public class Server {
     }
 
     public static ArrayList<Course> getRegisteredCoursesByStudent(int studentId) throws SQLException {
-        return DataBaseManager.getRegisteredCoursesByStudent(studentId);
+        return DataBaseManager.getRegisteredCourses(studentId);
     }
 
     public static ArrayList<Course> getAvailableCourses(int studentId, int departmentId) throws SQLException {

@@ -48,6 +48,18 @@ public class Course {
         this.departmentId = courseResultSet.getInt("department_id");
     }
 
+    public Course (ResultSet courseResultSet, ArrayList<ClassTime> classTimes) throws SQLException {
+        this.courseId = courseResultSet.getInt("course_id");
+        this.instructorName = courseResultSet.getString("instructor_name");
+        this.courseName = courseResultSet.getString("course_name");
+        this.capacity = courseResultSet.getInt("capacity");
+        this.number_of_credits = courseResultSet.getInt("number_of_credits");
+        this.classTimes = classTimes;
+        this.examStartTime = courseResultSet.getDate("exam_start_time");
+        this.courseType = CourseType.valueOf(courseResultSet.getString("course_type"));
+        this.departmentId = courseResultSet.getInt("department_id");
+    }
+
     public int getCourseId() {
         return courseId;
     }
