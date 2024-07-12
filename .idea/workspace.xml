@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cc0d07bb-de52-44ab-956a-2fb4833126a5" name="Changes" comment="" />
+    <list default="true" id="cc0d07bb-de52-44ab-956a-2fb4833126a5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Model/Department.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/System/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DataBaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/System/DataBaseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Page/ChooseDepartmentToViewAvailableCoursesPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/ChooseDepartmentToViewAvailableCoursesPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Page/ViewAvailableCoursesPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/ViewAvailableCoursesPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/System/Server.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,7 +60,7 @@
   </component>
   <component name="RunManager">
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Client" />
+      <option name="MAIN_CLASS_NAME" value="System.Client" />
       <module name="HW1" />
       <method v="2">
         <option name="Make" enabled="true" />

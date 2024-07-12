@@ -1,3 +1,10 @@
+package System;
+
+import Model.Course;
+import Model.Department;
+
+import java.util.ArrayList;
+
 public class Server {
 
     private Server() {
@@ -32,4 +39,7 @@ public class Server {
 
     }
 
+    public static ArrayList<Department> getDepartments() {
+        return new ArrayList<>();
+    }
 }
