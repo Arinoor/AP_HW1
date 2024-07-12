@@ -12,13 +12,29 @@ public class Server {
 
     }
 
-    public static void registerCourses(int studentId, ArrayList<Integer> toRegisterCourseIds) throws ValidationException, SQLException, DataBaseException {
-        ArrayList<Course> toRegisterCourses = getCoursesByIds(toRegisterCourseIds);
+    public static void loginStudent(int studentId, String password) throws SQLException, ValidationException {
+        DatabaseManager.loginStudent(studentId, password);
+    }
+
+    public static void loginAdmin(String username, String password) throws ValidationException {
+        DatabaseManager.loginAdmin(username, password);
+    }
+
+    public static void registerStudent(int studentId, String password) throws SQLException, DataBaseException, ValidationException {
+        boolean isRegistered = DatabaseManager.isRegistered(studentId);
+        if(isRegistered) {
+            throw new ValidationException(String.format("Student %d is already registered", studentId));
+        }
+        DatabaseManager.registerStudent(studentId, password);
+    }
+
+    public static void registerCourses(int studentId, ArrayList<Integer> registerCourseIds) throws ValidationException, SQLException, DataBaseException {
+        ArrayList<Course> registerCourses = getCoursesByIds(registerCourseIds);
         ArrayList<Course> registeredCourses = getRegisteredCourses(studentId);
-        for(Course course : toRegisterCourses) {
+        for(Course course : registerCourses) {
             registerCourse(studentId, course, registeredCourses);
         }
-        for(int courseId : toRegisterCourseIds) {
+        for(int courseId : registerCourseIds) {
             DatabaseManager.registerCourse(studentId, courseId);
         }
     }
@@ -38,7 +54,6 @@ public class Server {
         }
         checkTimeConflict(course, registeredCourses);
         registeredCourses.add(course);
-        course.setCapacity(course.getCapacity() - 1);
     }
 
     private static int getTotalGeneralCredits(ArrayList<Course> registeredCourses) {
@@ -89,6 +104,14 @@ public class Server {
     }
 
 
+    public static ArrayList<Course> getRegisteredCourses(int studentId) throws SQLException, DataBaseException {
+        return DatabaseManager.getRegisteredCourses(studentId);
+    }
+
+    public static ArrayList<Course> getAvailableCourses(int studentId, int departmentId) throws SQLException, DataBaseException {
+        return DatabaseManager.getAvailableCourses(studentId, departmentId);
+    }
+
     public static ArrayList<Course> getCoursesByIds(ArrayList<Integer> courseIds) throws SQLException, DataBaseException {
         ArrayList<Course> courses = new ArrayList<>();
         for(int courseId : courseIds) {
@@ -98,36 +121,12 @@ public class Server {
         return courses;
     }
 
-    public static ArrayList<Course> getRegisteredCourses(int studentId) throws SQLException, DataBaseException {
-        return DatabaseManager.getRegisteredCourses(studentId);
-    }
-
-    public static ArrayList<Course> getAvailableCourses(int studentId, int departmentId) throws SQLException, DataBaseException {
-        return DatabaseManager.getAvailableCourses(studentId, departmentId);
-    }
-
     public static String getDepartmentName(int departmentId) throws SQLException, DataBaseException {
         return DatabaseManager.getDepartmentName(departmentId);
     }
 
     public static ArrayList<Department> getDepartments() throws SQLException {
         return DatabaseManager.getDepartments();
-    }
-
-    public static void loginStudent(int studentId, String password) throws SQLException, ValidationException {
-        DatabaseManager.loginStudent(studentId, password);
-    }
-
-    public static void loginAdmin(String username, String password) throws SQLException, ValidationException {
-        DatabaseManager.loginAdmin(username, password);
-    }
-
-    public static void register(int studentId, String password) throws SQLException, DataBaseException, ValidationException {
-        boolean isRegistered = DatabaseManager.isRegistered(studentId);
-        if(isRegistered) {
-            throw new ValidationException(String.format("Student %d is already registered", studentId));
-        }
-        DatabaseManager.register(studentId, password);
     }
 
     public static void main(String[] args) {

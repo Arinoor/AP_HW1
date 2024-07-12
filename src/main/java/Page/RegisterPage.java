@@ -22,7 +22,7 @@ public class RegisterPage extends Page {
         try {
             int studentId = getStudentId();
             String password = getPassword();
-            Server.register(studentId, password);
+            Server.registerStudent(studentId, password);
             new StudentHomePage(studentId);
         } catch (NavigationBackException e) {
             new HomePage();
