@@ -1,5 +1,7 @@
 package Model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalTime;
 
 public class ClassTime {
@@ -11,6 +13,12 @@ public class ClassTime {
         this.day = day;
         this.startTime = startTime;
         this.endTime = endTime;
+    }
+
+    public ClassTime(ResultSet resultSet) throws SQLException {
+        this.day = resultSet.getString("day");
+        this.startTime = resultSet.getTime("start_time").toLocalTime();
+        this.endTime = resultSet.getTime("end_time").toLocalTime();
     }
 
     // Getters and setters

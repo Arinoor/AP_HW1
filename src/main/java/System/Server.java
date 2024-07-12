@@ -3,6 +3,7 @@ package System;
 import Model.*;
 import Exception.*;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Server {
@@ -11,13 +12,13 @@ public class Server {
 
     }
 
-    public static void registerCourses(int studentId, ArrayList<Integer> toRegisterCourseIds) throws ValidationException {
+    public static void registerCourses(int studentId, ArrayList<Integer> toRegisterCourseIds) throws ValidationException, SQLException {
         ArrayList<Course> toRegisterCourses = getCoursesByIds(toRegisterCourseIds);
         ArrayList<Course> registeredCourses = getRegisteredCoursesByStudent(studentId);
         for(Course course : toRegisterCourses) {
             registerCourse(studentId, course, registeredCourses);
         }
-        for(Course course : toRegisterCourses) {
+        for(int courseId : toRegisterCourseIds) {
             // register course to database
         }
     }
@@ -72,32 +73,48 @@ public class Server {
         }
     }
 
-    public static void dropCourses(int studentId, ArrayList<Integer> dropCourseIds) {
+    public static void dropCourses(int studentId, ArrayList<Integer> dropCourseIds) throws ValidationException {
+        for(int courseId : dropCourseIds) {
+            dropCourse(studentId, courseId);
+        }
+        for(int courseId : dropCourseIds) {
+            // drop course from database
+        }
+    }
 
+    private static void dropCourse(int studentId, int courseId) throws ValidationException {
+        if(!DataBaseManager.isRegistered(studentId, courseId)) {
+            throw new ValidationException(String.format("Course %d is not registered by student %d", courseId, studentId));
+        }
     }
 
 
     public static ArrayList<Course> getCoursesByIds(ArrayList<Integer> courseIds) {
-        return new ArrayList<>();
+        ArrayList<Course> courses = new ArrayList<>();
+        for(int courseId : courseIds) {
+            Course course = DataBaseManager.getCourseById(courseId);
+            courses.add(course);
+        }
+        return courses;
     }
 
-    public static ArrayList<Course> getRegisteredCoursesByStudent(int studentId) {
-        return new ArrayList<>();
+    public static ArrayList<Course> getRegisteredCoursesByStudent(int studentId) throws SQLException {
+        return DataBaseManager.getRegisteredCoursesByStudent(studentId);
     }
 
-    public static ArrayList<Course> getAvailableCourses(int studentId, int departmentId) {
-        return new ArrayList<>();
+    public static ArrayList<Course> getAvailableCourses(int studentId, int departmentId) throws SQLException {
+        return DataBaseManager.getAvailableCourses(studentId, departmentId);
     }
 
     public static String getDepartmentName(int departmentId) {
-        return "";
+        return DataBaseManager.getDepartmentName(departmentId);
+    }
+
+    public static ArrayList<Department> getDepartments() {
+        return DataBaseManager.getDepartments();
     }
 
     public static void main(String[] args) {
 
-    }
-
-    public static ArrayList<Department> getDepartments() {
-        return new ArrayList<>();
     }
 }

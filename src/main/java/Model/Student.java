@@ -1,5 +1,7 @@
 package Model;
 
+import java.sql.ResultSet;
+
 public class Student {
     private int studentId;
     private String passwrord;
@@ -7,6 +9,11 @@ public class Student {
     public Student(int studentId, String passwrord) {
         this.studentId = studentId;
         this.passwrord = passwrord;
+    }
+
+    public Student(ResultSet resultSet) throws Exception {
+        this.studentId = resultSet.getInt("student_id");
+        this.passwrord = resultSet.getString("password");
     }
 
     // getter and setters

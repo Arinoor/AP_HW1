@@ -4,6 +4,7 @@ import Exception.*;
 import Model.Course;
 import System.Server;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ViewAvailableCoursesPage extends Page {
@@ -34,7 +35,7 @@ public class ViewAvailableCoursesPage extends Page {
         }
     }
 
-    private void showAvailableCourses() {
+    private void showAvailableCourses() throws SQLException {
         ArrayList<Course> availableCourses = Server.getAvailableCourses(studentId, departmentId);
         showCourses(availableCourses);
     }

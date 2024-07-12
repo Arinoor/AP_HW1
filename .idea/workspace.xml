@@ -5,11 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc0d07bb-de52-44ab-956a-2fb4833126a5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Config/Config.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Exception/ValidationException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/ClassTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/ClassTime.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Course.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/System/DataBaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/System/DataBaseManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/System/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/System/Server.java" afterDir="false" />
     </list>

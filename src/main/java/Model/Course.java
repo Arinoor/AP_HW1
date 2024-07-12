@@ -1,5 +1,7 @@
 package Model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,6 +31,21 @@ public class Course {
         this.examStartTime = examStartTime;
         this.courseType = courseType;
         this.departmentId = departmentId;
+    }
+
+    public Course (ResultSet courseResultSet, ResultSet classTimeResultSet) throws SQLException {
+        this.courseId = courseResultSet.getInt("course_id");
+        this.instructorName = courseResultSet.getString("instructor_name");
+        this.courseName = courseResultSet.getString("course_name");
+        this.capacity = courseResultSet.getInt("capacity");
+        this.number_of_credits = courseResultSet.getInt("number_of_credits");
+        this.classTimes = new ArrayList<>();
+        while(classTimeResultSet.next()) {
+            this.classTimes.add(new ClassTime(classTimeResultSet));
+        }
+        this.examStartTime = courseResultSet.getDate("exam_start_time");
+        this.courseType = CourseType.valueOf(courseResultSet.getString("course_type"));
+        this.departmentId = courseResultSet.getInt("department_id");
     }
 
     public int getCourseId() {
@@ -108,7 +125,17 @@ public class Course {
     }
 
     public String toString() {
-        return "Course ID: " + courseId + ", Instructor Name: " + instructorName + ", Course Name: " + courseName + ", Capacity: " + capacity + ", Number of Credits: " + number_of_credits + ", Exam Start Time: " + examStartTime + ", Course Type: " + courseType + ", Department ID: " + departmentId;
+        return "Course{" +
+                "courseId=" + courseId +
+                ", instructorName='" + instructorName + '\'' +
+                ", courseName='" + courseName + '\'' +
+                ", capacity=" + capacity +
+                ", number_of_credits=" + number_of_credits +
+                ", classTimes=" + classTimes +
+                ", examStartTime=" + examStartTime +
+                ", courseType=" + courseType +
+                ", departmentId=" + departmentId +
+                '}';
     }
 
     public boolean equals(Object obj) {
