@@ -11,6 +11,7 @@ public class ChooseDepartmentToViewAvailableCoursesPage extends Page {
     private static final String message = """
             Choose a department by its id to view its available courses
             Enter 'back' to go back to the previous menu
+            Enter 'logout' to logout from the system
             """;
 
     private final int studentId;
@@ -29,26 +30,27 @@ public class ChooseDepartmentToViewAvailableCoursesPage extends Page {
             new ViewAvailableCoursesPage(studentId, departmentId);
         } catch (NavigationBackException e) {
             new StudentHomePage(studentId);
+        } catch (NavigationLogoutException e) {
+            new HomePage();
         } catch (ValidationException e) {
-            showMessage("\n" + e.getMessage() + "\n");
+            showMessage(e.getMessage());
             run();
         } catch (Exception e) {
-            showMessage("\nUnexpected error occurred\n" + e.getMessage() + "\n");
+            showMessage("Unexpected error occurred\n" + e.getMessage());
             run();
         }
     }
 
-    private int getDepartmentId() throws NavigationBackException, ValidationException, SQLException {
+    private int getDepartmentId() throws NavigationException, ValidationException, SQLException {
         String input = getInput("Enter department id: ");
         checkBack(input);
+        checkLogout(input);
         Validation.validateDepartmentId(input);
         return Integer.parseInt(input);
     }
 
     private void showDepartments() throws SQLException {
         ArrayList<Department> departments = Server.getDepartments();
-        for(Department department : departments) {
-            showMessage(department.toString());
-        }
+        Department.showDepartments(departments);
     }
 }

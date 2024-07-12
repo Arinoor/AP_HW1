@@ -26,7 +26,7 @@ public class StudentHomePage extends Page {
         } else if(choice.equals("2") || choice.contains("available")){
             new ChooseDepartmentToViewAvailableCoursesPage(studentId);
         } else if(choice.equals("3") || choice.contains("logout")){
-            new LoginPage();
+            new HomePage();
         } else {
             invalidChoice();
             run();

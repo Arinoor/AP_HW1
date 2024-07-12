@@ -28,13 +28,13 @@ public class AdminLoginPage extends Page {
         } catch (NavigationBackException e) {
             new LoginPage();
         } catch (NavigationCancelException e) {
-            showMessage("\nLogin again\n");
+            showMessage("Login again");
             run();
         } catch (ValidationException e) {
-            showMessage("\n" + e.getMessage() + "\n");
+            showMessage(e.getMessage());
             run();
         } catch (Exception e) {
-            showMessage("\nUnexpected error occurred\n" + e.getMessage() + "\n");
+            showMessage("Unexpected error occurred\n" + e.getMessage());
             run();
         }
     }
@@ -53,5 +53,4 @@ public class AdminLoginPage extends Page {
         Validation.validatePassword(input);
         return input;
     }
-
 }

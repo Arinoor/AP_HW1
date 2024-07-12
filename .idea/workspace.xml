@@ -5,20 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc0d07bb-de52-44ab-956a-2fb4833126a5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/System/Validation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Exception/NavigationLogoutException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Config/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Config/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Page/AdminLoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/AdminLoginPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Exception/DataBaseException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Exception/DatabaseException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Department.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Page/ChooseDepartmentToViewAvailableCoursesPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/ChooseDepartmentToViewAvailableCoursesPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Page/DropCourseConfirmationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/DropCourseConfirmationPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Page/Page.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/Page.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Page/RegisterCourseConfirmationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/RegisterCourseConfirmationPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Page/RegisterPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/RegisterPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Page/StudentHomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/StudentHomePage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Page/StudentLoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/StudentLoginPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Page/ViewAvailableCoursesPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/ViewAvailableCoursesPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Page/ViewRegisteredCoursesPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/ViewRegisteredCoursesPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/System/DataBaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/System/DatabaseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/System/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/System/DatabaseManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/System/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/System/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/System/Validation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/System/Validation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +57,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "server",
+    "git-widget-placeholder": "master",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",

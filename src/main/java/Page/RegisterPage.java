@@ -27,13 +27,13 @@ public class RegisterPage extends Page {
         } catch (NavigationBackException e) {
             new HomePage();
         } catch (NavigationCancelException e) {
-            showMessage("\nRegister again\n");
+            showMessage("Register again");
             run();
         } catch (ValidationException e) {
-            showMessage("\n" + e.getMessage() + "\n");
+            showMessage(e.getMessage());
             run();
         } catch (Exception e) {
-            showMessage("\nUnexpected error occurred\n" + e.getMessage() + "\n");
+            showMessage("Unexpected error occurred\n" + e.getMessage());
             run();
         }
     }

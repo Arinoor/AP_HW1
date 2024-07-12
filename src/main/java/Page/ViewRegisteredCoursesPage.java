@@ -13,6 +13,7 @@ public class ViewRegisteredCoursesPage extends Page {
             There are your registered courses
             You can drop one or more courses by entering their id separated by space
             Enter 'back' to go back to the previous page
+            Enter 'logout' to logout from the system
             """;
 
     private final int studentId;
@@ -32,18 +33,21 @@ public class ViewRegisteredCoursesPage extends Page {
             new DropCourseConfirmationPage(studentId, dropCourseIds);
         } catch (NavigationBackException e) {
             new StudentHomePage(studentId);
+        } catch (NavigationLogoutException e) {
+            new HomePage();
         } catch (ValidationException e) {
-            showMessage("\n" + e.getMessage() + "\n");
+            showMessage(e.getMessage());
             run();
         } catch (Exception e) {
-            showMessage("\nUnexpected error occurred\n" + e.getMessage() + "\n");
+            showMessage("Unexpected error occurred\n" + e.getMessage());
             run();
         }
     }
 
-    public ArrayList<Integer> getDropCourseIds() throws NavigationBackException, ValidationException, SQLException, DataBaseException {
+    public ArrayList<Integer> getDropCourseIds() throws NavigationException, ValidationException, SQLException, DatabaseException {
         String input = getInput("Enter course ids to drop: ");
         checkBack(input);
+        checkLogout(input);
         String[] Ids = input.split(" ");
         ArrayList<Integer> dropCourseIds = Validation.getValidatedDropCourseIds(Ids, getRegisteredCourses());
         if(dropCourseIds.isEmpty()) {
@@ -52,12 +56,17 @@ public class ViewRegisteredCoursesPage extends Page {
         return dropCourseIds;
     }
 
-    private void showRegisteredCourses() throws SQLException, DataBaseException {
+    private void showRegisteredCourses() throws SQLException, DatabaseException {
         ArrayList<Course> registeredCourses = getRegisteredCourses();
-        showCourses(registeredCourses);
+        if(registeredCourses.isEmpty()) {
+            showMessage("You have not registered any course yet");
+        }
+        else {
+            Course.showCourses(registeredCourses);
+        }
     }
 
-    private ArrayList<Course> getRegisteredCourses() throws SQLException, DataBaseException {
+    private ArrayList<Course> getRegisteredCourses() throws SQLException, DatabaseException {
         if(registeredCourses == null) {
             registeredCourses = Server.getRegisteredCourses(studentId);
         }

@@ -26,15 +26,15 @@ public class DropCourseConfirmationPage extends Page {
     public void run() {
         try {
             showDropCourses();
-            String confirmation = getInput("Confirm or Cancel: ");
+            String confirmation = getChoice("Confirm or Cancel: ");
             switch (confirmation) {
                 case "confirm":
                     Server.dropCourses(studentId, dropCourseIds);
-                    showMessage("Courses dropped successfully\n");
+                    showMessage("Courses dropped successfully");
                     new StudentHomePage(studentId);
                     break;
                 case "cancel":
-                    showMessage("Operation cancelled\n");
+                    showMessage("Operation cancelled");
                     new ViewRegisteredCoursesPage(studentId);
                     break;
                 default:
@@ -42,17 +42,17 @@ public class DropCourseConfirmationPage extends Page {
                     run();
             }
         } catch (ValidationException e) {
-            showMessage("\n" + e.getMessage() + "\n");
+            showMessage(e.getMessage());
             run();
         } catch (Exception e) {
-            showMessage("\nUnexpected error occurred\n" + e.getMessage() + "\n");
+            showMessage("Unexpected error occurred\n" + e.getMessage());
             run();
         }
     }
 
-    private void showDropCourses() throws SQLException, DataBaseException {
+    private void showDropCourses() throws SQLException, DatabaseException {
         ArrayList<Course> dropCourses = Server.getCoursesByIds(dropCourseIds);
-        showCourses(dropCourses);
+        Course.showCourses(dropCourses);
     }
 
 }

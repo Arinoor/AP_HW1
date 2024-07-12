@@ -14,7 +14,7 @@ public class ViewAvailableCoursesPage extends Page {
     private final int departmentId;
     private ArrayList<Course> availableCourses;
 
-    public ViewAvailableCoursesPage(int studentId, int departmentId) throws SQLException, DataBaseException {
+    public ViewAvailableCoursesPage(int studentId, int departmentId) throws SQLException, DatabaseException {
         super();
         setMessage();
         showMessage(message);
@@ -30,20 +30,31 @@ public class ViewAvailableCoursesPage extends Page {
             new RegisterCourseConfirmationPage(studentId, departmentId, registerCourseIds);
         } catch (NavigationBackException e) {
             new ChooseDepartmentToViewAvailableCoursesPage(studentId);
+        } catch (NavigationLogoutException e) {
+            new HomePage();
+        } catch (ValidationException e) {
+            showMessage(e.getMessage());
+            run();
         } catch (Exception e) {
-            showMessage("\nUnexpected error occurred\n" + e.getMessage() + "\n");
+            showMessage("Unexpected error occurred\n" + e.getMessage());
             run();
         }
     }
 
-    private void showAvailableCourses() throws SQLException, DataBaseException {
+    private void showAvailableCourses() throws SQLException, DatabaseException {
         ArrayList<Course> availableCourses = getAvailableCourses();
-        showCourses(availableCourses);
+        if(availableCourses.isEmpty()) {
+            showMessage("No available courses to register");
+        }
+        else {
+            Course.showCourses(availableCourses);
+        }
     }
 
-    private ArrayList<Integer> getRegisterCourseIds() throws NavigationBackException, ValidationException {
+    private ArrayList<Integer> getRegisterCourseIds() throws NavigationException, ValidationException {
         String input = getInput("Enter course ids to register: ");
         checkBack(input);
+        checkLogout(input);
         String[] Ids = input.split(" ");
         ArrayList<Integer> registerCourseIds = Validation.getValidatedRegisterCourseIds(Ids, availableCourses);
         if(registerCourseIds.isEmpty()) {
@@ -52,17 +63,18 @@ public class ViewAvailableCoursesPage extends Page {
         return registerCourseIds;
     }
 
-    private void setMessage() throws SQLException, DataBaseException {
-        String departmentName = Server.getDepartmentName(departmentId);
-        message = String.format("These are available courses for you from department %s\n", departmentName) +
-                "You can register one or more courses by entering their id separated by space\n" +
-                "Enter 'back' to go back to the previous menu\n";
-    }
-
-    private ArrayList<Course> getAvailableCourses() throws SQLException, DataBaseException {
+    private ArrayList<Course> getAvailableCourses() throws SQLException, DatabaseException {
         if(availableCourses == null) {
             availableCourses = Server.getAvailableCourses(studentId, departmentId);
         }
         return availableCourses;
+    }
+
+    private void setMessage() throws SQLException, DatabaseException {
+        String departmentName = Server.getDepartmentName(departmentId);
+        message = String.format("These are available courses for you from department %s\n", departmentName) +
+                  "You can register one or more courses by entering their id separated by space\n" +
+                  "Enter 'back' to go back to the previous menu\n" +
+                  "Enter 'logout' to logout from the system\n";
     }
 }

@@ -142,7 +142,7 @@ public class DatabaseManager {
         close(connection);
     }
 
-    public static ArrayList<Course> getRegisteredCourses(int studentId) throws SQLException, DataBaseException {
+    public static ArrayList<Course> getRegisteredCourses(int studentId) throws SQLException, DatabaseException {
         check(studentId, "student_id", "students");
         String query = "SELECT course_id FROM registrations WHERE student_id = ?";
         Connection connection = connect();
@@ -157,7 +157,7 @@ public class DatabaseManager {
         return courses;
     }
 
-    public static ArrayList<Course> getAvailableCourses(int studentId, int departmentId) throws SQLException, DataBaseException {
+    public static ArrayList<Course> getAvailableCourses(int studentId, int departmentId) throws SQLException, DatabaseException {
         check(studentId, "student_id", "students");
         check(departmentId, "department_id", "departments");
         String query = "SELECT * FROM courses WHERE department_id = ? AND course_id NOT IN (SELECT course_id FROM registrations WHERE student_id = ?)";
@@ -188,7 +188,7 @@ public class DatabaseManager {
         return classTimes;
     }
 
-    public static Course getCourseById(int courseId) throws SQLException, DataBaseException {
+    public static Course getCourseById(int courseId) throws SQLException, DatabaseException {
         String query = "SELECT * FROM courses WHERE course_id = ?";
         Connection connection = connect();
         PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -197,7 +197,7 @@ public class DatabaseManager {
         try {
             courseResultSet.next();
         } catch (SQLException e) {
-            throw new DataBaseException(String.format("Course with id %d not found", courseId));
+            throw new DatabaseException(String.format("Course with id %d not found", courseId));
         }
         Course course = getCourse(courseResultSet);
         close(connection);
@@ -210,7 +210,7 @@ public class DatabaseManager {
         return new Course(courseResultSet, classTimes);
     }
 
-    public static String getDepartmentName(int departmentId) throws SQLException, DataBaseException {
+    public static String getDepartmentName(int departmentId) throws SQLException, DatabaseException {
         String query = "SELECT department_name FROM department WHERE department_id = ?";
         Connection connection = connect();
         PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -219,7 +219,7 @@ public class DatabaseManager {
         try {
             resultSet.next();
         } catch (SQLException e) {
-            throw new DataBaseException(String.format("Department with id %d not found", departmentId));
+            throw new DatabaseException(String.format("Department with id %d not found", departmentId));
         }
         String departmentName = resultSet.getString("department_name");
         close(connection);
@@ -243,7 +243,7 @@ public class DatabaseManager {
         return isExist(studentId, "student_id", "students");
     }
 
-    public static boolean isRegistered(int studentId, int courseId) throws SQLException, DataBaseException {
+    public static boolean isRegistered(int studentId, int courseId) throws SQLException, DatabaseException {
         check(studentId, "student_id", "students");
         check(courseId, "course_id", "courses");
         String query = "SELECT EXISTS(SELECT 1 FROM registrations WHERE student_id = ? AND course_id = ?)";
@@ -270,11 +270,11 @@ public class DatabaseManager {
         return exists;
     }
 
-    public static void check(int Id, String column, String table) throws SQLException, DataBaseException {
+    public static void check(int Id, String column, String table) throws SQLException, DatabaseException {
         boolean exists = isExist(Id, column, table);
         if (!exists) {
             String Column = column.substring(0, 1).toUpperCase() + column.substring(1).toLowerCase();
-            throw new DataBaseException(String.format("%s with id %d not found", Column, Id));
+            throw new DatabaseException(String.format("%s with id %d not found", Column, Id));
         }
     }
 }

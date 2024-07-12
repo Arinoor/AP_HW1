@@ -30,15 +30,15 @@ public class RegisterCourseConfirmationPage extends Page {
     public void run() {
         try {
             showRegisterCourses();
-            String confirmation = getInput("Confirm or Cancel: ");
+            String confirmation = getChoice("Confirm or Cancel: ");
             switch (confirmation) {
                 case "confirm":
                     Server.registerCourses(studentId, registerCourseIds);
-                    showMessage("Courses registered successfully\n");
+                    showMessage("Courses registered successfully");
                     new StudentHomePage(studentId);
                     break;
                 case "cancel":
-                    showMessage("Operation cancelled\n");
+                    showMessage("Operation cancelled");
                     new ViewAvailableCoursesPage(studentId, departmentId);
                     break;
                 default:
@@ -46,16 +46,16 @@ public class RegisterCourseConfirmationPage extends Page {
                     run();
             }
         } catch (ValidationException e) {
-            showMessage("\n" + e.getMessage() + "\n");
+            showMessage(e.getMessage());
             run();
         } catch (Exception e) {
-            showMessage("\nUnexpected error occurred\n" + e.getMessage() + "\n");
+            showMessage("Unexpected error occurred\n" + e.getMessage());
             run();
         }
     }
 
-    private void showRegisterCourses() throws SQLException, DataBaseException {
+    private void showRegisterCourses() throws SQLException, DatabaseException {
         ArrayList<Course> registerCourses = Server.getCoursesByIds(registerCourseIds);
-        showCourses(registerCourses);
+        Course.showCourses(registerCourses);
     }
 }

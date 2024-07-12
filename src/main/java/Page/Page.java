@@ -14,25 +14,16 @@ public abstract class Page implements Runnable {
     }
 
     public Page(String message) {
-        showMessage("\n---------------------------------------------\n");
         this.message = message;
     }
 
     public void showMessage() {
+        System.out.println("\n---------------------------------------------\n");
         System.out.println(message);
     }
 
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public String getChoice() {
-        System.out.print("Enter your choice: ");
-        return scanner.nextLine().toLowerCase().trim();
+    public static void showMessage(String message) {
+        System.out.println("\n" + message + "\n");
     }
 
     public String getInput(String message) {
@@ -40,12 +31,22 @@ public abstract class Page implements Runnable {
         return scanner.nextLine().trim();
     }
 
-    public static void showMessage(String message) {
-        System.out.println("\n" + message + "\n");
+    public String getChoice(String message) {
+        System.out.print(message);
+        return scanner.nextLine().toLowerCase().trim();
+    }
+
+    public String getChoice() {
+        return getChoice("Enter your choice: ");
     }
 
     public static void invalidChoice() {
-        showMessage("\nInvalid choice\n");
+        showMessage("Invalid choice, please try again");
+    }
+
+    public static void checkNavigation(String choice) throws NavigationException {
+        checkBackOrCancel(choice);
+        checkLogout(choice);
     }
 
     public static void checkBackOrCancel(String choice) throws NavigationBackException, NavigationCancelException {
@@ -65,10 +66,17 @@ public abstract class Page implements Runnable {
         }
     }
 
-    public static void showCourses(ArrayList<Course> courses) {
-        for(Course course: courses) {
-            showMessage(course.toString());
+    public static void checkLogout(String choice) throws NavigationLogoutException {
+        if(choice.equals("logout")) {
+            throw new NavigationLogoutException();
         }
     }
 
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }
