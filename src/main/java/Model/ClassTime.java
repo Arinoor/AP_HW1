@@ -46,4 +46,14 @@ public class ClassTime {
                 ", endTime=" + endTime +
                 '}';
     }
+
+    public boolean isOverlapping(ClassTime classTime) {
+        if (!this.day.equals(classTime.day)) {
+            return false;
+        }
+        if (this.startTime.isAfter(classTime.endTime) || this.endTime.isBefore(classTime.startTime)) {
+            return false;
+        }
+        return true;
+    }
 }

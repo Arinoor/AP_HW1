@@ -7,10 +7,12 @@ import System.Server;
 
 public class ChooseDepartmentToViewAvailableCoursesPage extends Page {
 
-    private static String message = "Choose a department by its id to view its available courses\n" +
-            "Enter 'back' to go back to the previous menu\n";
+    private static final String message = """
+            Choose a department by its id to view its available courses
+            Enter 'back' to go back to the previous menu
+            """;
 
-    private int studentId;
+    private final int studentId;
 
     public ChooseDepartmentToViewAvailableCoursesPage(int studentId) {
         super(message);

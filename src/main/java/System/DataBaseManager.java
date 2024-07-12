@@ -2,6 +2,7 @@ package System;
 
 import java.sql.*;
 import java.util.ArrayList;
+import Config.Config;
 
 // This class is responsible for connecting to the database and executing queries.
 // Database course_registration_db has the following tables:
@@ -13,13 +14,10 @@ import java.util.ArrayList;
 // class_times table : course_id, day, start_time, end_time
 
 public class DataBaseManager {
-    private static final String URL = "jdbc:mysql://localhost:3306/course_registration_db";
-    private static final String USER = "root";
-    private static final String PASSWORD = "lmqsy.Arinoor_8053";
 
     public Connection connect() {
         try {
-            return DriverManager.getConnection(URL, USER, PASSWORD);
+            return DriverManager.getConnection(Config.DATABASE_URL, Config.DATABASE_USER, Config.DATABASE_PASSWORD);
         } catch (SQLException e) {
             e.printStackTrace();
             return null;

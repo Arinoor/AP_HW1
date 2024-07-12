@@ -3,14 +3,17 @@ package Page;
 import Model.Course;
 import java.util.ArrayList;
 import Exception.*;
+import System.Server;
 
 public class ViewRegisteredCoursesPage extends Page {
 
-    private static String message = "There are your registered courses\n" +
-            "You can drop one or more courses by entering their id separated by space\n" +
-            "Enter 'back' to go back to the previous page\n";
+    private static final String message = """
+            There are your registered courses
+            You can drop one or more courses by entering their id separated by space
+            Enter 'back' to go back to the previous page
+            """;
 
-    private int studentId;
+    private final int studentId;
 
     public ViewRegisteredCoursesPage(int studentId) {
         super(message);
@@ -45,7 +48,7 @@ public class ViewRegisteredCoursesPage extends Page {
     }
 
     private void showRegisteredCourses() {
-        ArrayList<Course> registeredCourses = Server.getCoursesRegisteredByStudent(studentId);
+        ArrayList<Course> registeredCourses = Server.getRegisteredCoursesByStudent(studentId);
         showCourses(registeredCourses);
     }
 }

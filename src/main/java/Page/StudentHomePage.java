@@ -2,13 +2,15 @@ package Page;
 
 public class StudentHomePage extends Page {
 
-    private static String message = "Welcome to Student Home page\n" +
-            "Please choose an option\n" +
-            "[1] View registered courses\n" +
-            "[2] View available courses\n" +
-            "[3] Logout\n";
+    private static final String message = """
+            Welcome to Student Home page
+            Please choose an option
+            [1] View registered courses
+            [2] View available courses
+            [3] Logout
+            """;
 
-    private int studentId;
+    private final int studentId;
 
     public StudentHomePage(int studentId) {
         super(message);

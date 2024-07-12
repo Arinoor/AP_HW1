@@ -2,10 +2,12 @@ package Page;
 
 public class HomePage extends Page {
 
-    private static String message = "Welcome to course registration system\n" +
-            "Please login or register\n" +
-            "[1] Login\n" +
-            "[2] Register\n";
+    private static final String message = """
+            Welcome to course registration system
+            Please login or register
+            [1] Login
+            [2] Register
+            """;
 
     public HomePage() {
         super(message);

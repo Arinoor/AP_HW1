@@ -3,16 +3,19 @@ package Page;
 import java.util.ArrayList;
 import Exception.*;
 import Model.Course;
+import System.Server;
 
 public class RegisterCourseConfirmationPage extends Page {
 
-    private static String message = "These are the courses you are about to register\n" +
-            "Enter 'confirm' to register the courses\n" +
-            "Enter 'cancel' to cancel the operation\n";
+    private static final String message = """
+            These are the courses you are about to register
+            Enter 'confirm' to register the courses
+            Enter 'cancel' to cancel the operation
+            """;
 
-    private int studentId;
-    private int departmentId;
-    private ArrayList<Integer> registerCourseIds;
+    private final int studentId;
+    private final int departmentId;
+    private final ArrayList<Integer> registerCourseIds;
 
     public RegisterCourseConfirmationPage(int studentId, int departmentId, ArrayList<Integer> registerCourseIds) {
         super(message);

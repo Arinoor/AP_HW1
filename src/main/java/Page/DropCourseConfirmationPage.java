@@ -3,6 +3,7 @@ package Page;
 import java.util.ArrayList;
 import Exception.*;
 import Model.Course;
+import System.Server;
 
 public class DropCourseConfirmationPage extends Page {
 

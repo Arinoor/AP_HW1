@@ -111,4 +111,30 @@ public class Course {
         return "Course ID: " + courseId + ", Instructor Name: " + instructorName + ", Course Name: " + courseName + ", Capacity: " + capacity + ", Number of Credits: " + number_of_credits + ", Exam Start Time: " + examStartTime + ", Course Type: " + courseType + ", Department ID: " + departmentId;
     }
 
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof Course)) {
+            return false;
+        }
+        Course course = (Course) obj;
+        return course.courseId == this.courseId;
+    }
+
+    public boolean isExamTimeOverlapping(Course course) {
+        return this.examStartTime.equals(course.examStartTime);
+    }
+
+    public boolean isClassTimeOverlapping(Course course) {
+        for(ClassTime classTime : this.classTimes) {
+            for(ClassTime registeredClassTime : course.classTimes) {
+                if(classTime.isOverlapping(registeredClassTime)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 }

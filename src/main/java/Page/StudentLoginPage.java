@@ -4,10 +4,12 @@ import Exception.*;
 
 public class StudentLoginPage extends Page {
 
-    private static String message = "Welcome to Student Login page\n" +
-            "Please enter you student number and password\n" +
-            "Enter 'back' to go back to the previous menu\n" +
-            "Enter 'cancel' to restart the process\n";
+    private static final String message = """
+            Welcome to Student Login page
+            Please enter you student number and password
+            Enter 'back' to go back to the previous menu
+            Enter 'cancel' to restart the process
+            """;
 
     public StudentLoginPage() {
         super(message);

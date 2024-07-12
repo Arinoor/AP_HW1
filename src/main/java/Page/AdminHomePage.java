@@ -2,10 +2,12 @@ package Page;
 
 public class AdminHomePage extends Page {
 
-    private static String message = "Welcome to Admin Home page\n" +
-            "Please choose an option\n" +
-            "[1] View courses\n" +
-            "[2] Logout\n";
+    private static final String message = """
+            Welcome to Admin Home page
+            Please choose an option
+            [1] View courses
+            [2] Logout
+            """;
 
     public AdminHomePage() {
         super(message);

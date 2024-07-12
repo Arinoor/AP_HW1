@@ -4,10 +4,12 @@ import Exception.*;
 
 public class AdminLoginPage extends Page {
 
-    private static String message = "Welcome to Admin Login page\n" +
-            "Please enter your username and password\n" +
-            "Enter 'back' to go back to the previous menu\n" +
-            "Enter 'cancel' to restart the process\n";
+    private static final String message = """
+            Welcome to Admin Login page
+            Please enter your username and password
+            Enter 'back' to go back to the previous menu
+            Enter 'cancel' to restart the process
+            """;
 
     public AdminLoginPage() {
         super(message);

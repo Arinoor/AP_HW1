@@ -9,8 +9,8 @@ import java.util.ArrayList;
 public class ViewAvailableCoursesPage extends Page {
 
     private String message;
-    private int studentId;
-    private int departmentId;
+    private final int studentId;
+    private final int departmentId;
 
     public ViewAvailableCoursesPage(int studentId, int departmentId) {
         super();
