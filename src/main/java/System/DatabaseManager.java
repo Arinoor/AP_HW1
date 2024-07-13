@@ -66,26 +66,28 @@ public class DatabaseManager {
     }
 
     public static void addDepartment(Department department) throws SQLException {
-        String query = "INSERT INTO departments (department_name) VALUES (?)";
+        String query = "INSERT INTO departments (department_id, department_name) VALUES (?, ?)";
         Connection connection = connect();
         PreparedStatement preparedStatement = connection.prepareStatement(query);
-        preparedStatement.setString(1, department.getName());
+        preparedStatement.setInt(1, department.getId());
+        preparedStatement.setString(2, department.getName());
         if(preparedStatement.executeUpdate() == 0)
             throw new SQLException("Error while adding department");
         close(connection);
     }
 
     public static void addCourse(Course course) throws SQLException {
-        String query = "INSERT INTO courses (instructor_name, course_name, capacity, credits, exam_start_time, course_type, department_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO courses (course_id, instructor_name, course_name, capacity, credits, exam_start_time, course_type, department_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         Connection connection = connect();
         PreparedStatement preparedStatement = connection.prepareStatement(query);
-        preparedStatement.setString(1, course.getInstructorName());
-        preparedStatement.setString(2, course.getCourseName());
-        preparedStatement.setInt(3, course.getCapacity());
-        preparedStatement.setInt(4, course.getNumberOfCredits());
-        preparedStatement.setDate(5, (Date) course.getExamStartTime());
-        preparedStatement.setString(6, course.getCourseType().name());
-        preparedStatement.setInt(7, course.getDepartmentId());
+        preparedStatement.setInt(1, course.getCourseId());
+        preparedStatement.setString(2, course.getInstructorName());
+        preparedStatement.setString(3, course.getCourseName());
+        preparedStatement.setInt(4, course.getCapacity());
+        preparedStatement.setInt(5, course.getNumberOfCredits());
+        preparedStatement.setDate(6, (Date) course.getExamStartTime());
+        preparedStatement.setString(7, course.getCourseType().name());
+        preparedStatement.setInt(8, course.getDepartmentId());
         if(preparedStatement.executeUpdate() == 0)
             throw new SQLException("Error while adding course");
         close(connection);
@@ -221,8 +223,22 @@ public class DatabaseManager {
         return new Course(courseResultSet, classTimes);
     }
 
+    public static ArrayList<ClassTime> getClassTimesOfInstructor(String instructorName) throws SQLException {
+        String query = "SELECT * FROM class_times WHERE course_id IN (SELECT course_id FROM courses WHERE instructor_name = ?)";
+        Connection connection = connect();
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, instructorName);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        ArrayList<ClassTime> classTimes = new ArrayList<>();
+        while (resultSet.next()) {
+            classTimes.add(new ClassTime(resultSet));
+        }
+        close(connection);
+        return classTimes;
+    }
+
     public static String getDepartmentName(int departmentId) throws SQLException, DatabaseException {
-        String query = "SELECT department_name FROM department WHERE department_id = ?";
+        String query = "SELECT department_name FROM departments WHERE department_id = ?";
         Connection connection = connect();
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setInt(1, departmentId);

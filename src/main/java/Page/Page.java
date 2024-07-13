@@ -41,6 +41,10 @@ public abstract class Page implements Runnable {
         return getChoice("Enter your choice: ");
     }
 
+    public static void showExceptionMessage(Exception e) {
+        showMessage("Unexpected error occurred\n" + e.getMessage());
+    }
+
     public static void invalidChoice() {
         showMessage("Invalid choice, please try again");
     }

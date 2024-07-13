@@ -32,7 +32,7 @@ public class RegisterPage extends Page {
             showMessage(e.getMessage());
             run();
         } catch (Exception e) {
-            showMessage("Unexpected error occurred\n" + e.getMessage());
+            showExceptionMessage(e);
             run();
         }
     }

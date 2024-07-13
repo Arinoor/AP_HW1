@@ -24,7 +24,7 @@ public class ViewCoursesAdminPage extends Page {
     public void run() {
         try {
             showCourses();
-            String choice = getChoice(message);
+            String choice = getChoice();
             if(choice.equals("logout")) {
                 new HomePage();
             }
@@ -49,13 +49,14 @@ public class ViewCoursesAdminPage extends Page {
             }
         }
         catch (Exception e) {
-            showMessage("Unexpected error occurred\n" + e.getMessage());
+            showExceptionMessage(e);
             run();
         }
 
     }
 
     private void showCourses() throws SQLException, DatabaseException {
+        courseIDs = getCourseIDs();
         if(courseIDs.isEmpty()) {
             showMessage("No courses to show");
         }
@@ -77,7 +78,7 @@ public class ViewCoursesAdminPage extends Page {
         message = String.format("Presented courses in department %s", departmentName) + "\n" +
                 "Select a course by its id to view its students or change capacity" + "\n" +
                 "Enter 'add' to add a new course" + "\n" +
-                "Enter 'logout' to logout from the system";
+                "Enter 'logout' to logout from the system\n";
         super.setMessage(message);
     }
 }

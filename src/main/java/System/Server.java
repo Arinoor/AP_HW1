@@ -1,5 +1,6 @@
 package System;
 
+import Config.Config;
 import Model.*;
 import Exception.*;
 
@@ -43,7 +44,7 @@ public class Server {
         }
     }
 
-    private static void registerCourse(int studentId, Course course, ArrayList<Course> registeredCourses) throws ValidationException {
+    public static void registerCourse(int studentId, Course course, ArrayList<Course> registeredCourses) throws ValidationException {
         if(registeredCourses.contains(course)) {
             throw new ValidationException(String.format("Course %d is already registered by student %d", course.getCourseId(), studentId));
         }
@@ -53,7 +54,7 @@ public class Server {
         if(course.getNumberOfCredits() + getTotalCredits(registeredCourses) > 20) {
             throw new ValidationException("No student can register more than 20 credits");
         }
-        if(course.getCourseType() == CourseType.General && course.getNumberOfCredits() + getTotalGeneralCredits(registeredCourses) > 5) {
+        if(course.getCourseType() == CourseType.GENERAL && course.getNumberOfCredits() + getTotalGeneralCredits(registeredCourses) > 5) {
             throw new ValidationException("No student can register more than 5 credits of general courses");
         }
         checkTimeConflict(course, registeredCourses);
@@ -63,7 +64,7 @@ public class Server {
     private static int getTotalGeneralCredits(ArrayList<Course> registeredCourses) {
         int totalGeneralCredits = 0;
         for(Course course : registeredCourses) {
-            if(course.getCourseType() == CourseType.General) {
+            if(course.getCourseType() == CourseType.GENERAL) {
                 totalGeneralCredits += course.getNumberOfCredits();
             }
         }
@@ -147,7 +148,19 @@ public class Server {
         return DatabaseManager.getDepartments();
     }
 
-    public static void main(String[] args) {
+    private static void initializeDepartments() {
+        ArrayList<Department> departments = Config.departments;
+        for(Department department : departments) {
+            try {
+                DatabaseManager.addDepartment(department);
+            } catch (SQLException e) {
+                System.out.println("Error occurred while adding department " + department);
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 
+    public static void main(String[] args) {
+        initializeDepartments();
     }
 }

@@ -1,7 +1,5 @@
 package Page;
 
-import java.sql.SQLException;
-
 public class ViewCourseAdminPage extends Page {
 
     private static final String message = """
@@ -33,7 +31,7 @@ public class ViewCourseAdminPage extends Page {
             try {
                 new ViewCoursesAdminPage(departmentId);
             } catch (Exception e) {
-                showMessage("Unexpected error occurred\n" + e.getMessage());
+                showExceptionMessage(e);
                 run();
             }
         }
@@ -44,7 +42,7 @@ public class ViewCourseAdminPage extends Page {
             new dropStudentAdminPage(courseId, departmentId);
         }
         else if(choice.equals("3") || choice.contains("capacity")) {
-            new increaseCapacityPage(courseId, departmentId);
+            new IncreaseCapacityPage(courseId, departmentId);
         }
         else {
             invalidChoice();

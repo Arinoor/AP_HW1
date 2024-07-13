@@ -5,28 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc0d07bb-de52-44ab-956a-2fb4833126a5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Page/AddCoursePage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Page/ViewCourseAdminPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Page/ViewCoursesAdminPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Page/increaseCapacityPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Page/registerStudentAdminPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Page/dropStudentAdminPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/ClassTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/ClassTime.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Day.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Day.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Config/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Config/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/CourseType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/CourseType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Page/AddCoursePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/AddCoursePage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Page/AdminHomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/AdminHomePage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Page/AdminLoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/AdminLoginPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Page/ChooseDepartmentToViewAvailableCoursesPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/ChooseDepartmentToViewAvailableCoursesPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Page/DropCourseConfirmationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/DropCourseConfirmationPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Page/HomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/HomePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Page/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/LoginPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Page/Page.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/Page.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Page/RegisterCourseConfirmationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/RegisterCourseConfirmationPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Page/RegisterPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/RegisterPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Page/StudentHomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/StudentHomePage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Page/StudentLoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/StudentLoginPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Page/ViewAvailableCoursesPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/ViewAvailableCoursesPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Page/ViewCoursesPage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Page/ViewCourseAdminPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/ViewCourseAdminPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Page/ViewCoursesAdminPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/ViewCoursesAdminPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Page/ViewRegisteredCoursesPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/ViewRegisteredCoursesPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Page/increaseCapacityPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/IncreaseCapacityPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Page/registerStudentAdminPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/registerStudentAdminPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/System/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/System/DatabaseManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/System/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/System/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/System/Validation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/System/Validation.java" afterDir="false" />
@@ -77,7 +75,7 @@
       <recent name="Page" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="System.Client" />
       <module name="HW1" />
@@ -85,9 +83,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="System.Server" />
+      <module name="HW1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="System.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Client" />
+        <item itemvalue="Application.Server" />
         <item itemvalue="Application.Client" />
       </list>
     </recent_temporary>

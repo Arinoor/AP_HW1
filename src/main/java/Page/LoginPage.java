@@ -12,7 +12,6 @@ public class LoginPage extends Page {
 
     public LoginPage() {
         super(message);
-        showMessage();
         run();
     }
 

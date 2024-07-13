@@ -1,6 +1,6 @@
 package Model;
 
 public enum CourseType {
-    General,
-    Specialized,
+    GENERAL,
+    SPECIALIZED,
 }

@@ -3,10 +3,10 @@ package Page;
 import System.*;
 import Exception.*;
 
-public class increaseCapacityPage extends Page {
+public class IncreaseCapacityPage extends Page {
 
     private static final String message = """
-            This is the course you are about to increase its capacity
+            Enter extra capacity to increase
             Enter 'back' to go back to the previous menu
             Enter 'cancel' to cancel the process
             Enter 'logout' to logout from the system
@@ -15,8 +15,11 @@ public class increaseCapacityPage extends Page {
     private int courseId;
     private int departmentId;
 
-    public increaseCapacityPage(int courseId, int departmentId) {
+    public IncreaseCapacityPage(int courseId, int departmentId) {
         super(message);
+        this.courseId = courseId;
+        this.departmentId = departmentId;
+        run();
     }
 
     public void run() {
@@ -30,13 +33,13 @@ public class increaseCapacityPage extends Page {
             showMessage(e.getMessage());
             run();
         } catch (Exception e) {
-            showMessage("Unexpected error occurred\n" + e.getMessage());
+            showExceptionMessage(e);
             run();
         }
     }
 
     private int getCapacity() throws NavigationException, ValidationException {
-        String input = getInput("Enter the new capacity: ");
+        String input = getInput("Enter the extra capacity: ");
         checkNavigation(input);
         Validation.validateCapacity(input);
         return Integer.parseInt(input);
