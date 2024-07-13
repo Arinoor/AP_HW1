@@ -14,7 +14,6 @@ public class StudentLoginPage extends Page {
 
     public StudentLoginPage() {
         super(message);
-        showMessage();
         run();
     }
 

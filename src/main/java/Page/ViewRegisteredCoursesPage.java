@@ -22,7 +22,6 @@ public class ViewRegisteredCoursesPage extends Page {
     public ViewRegisteredCoursesPage(int studentId) {
         super(message);
         this.studentId = studentId;
-        showMessage();
         run();
     }
 
@@ -49,7 +48,7 @@ public class ViewRegisteredCoursesPage extends Page {
         checkBack(input);
         checkLogout(input);
         String[] Ids = input.split(" ");
-        ArrayList<Integer> dropCourseIds = Validation.getValidatedDropCourseIds(Ids, getRegisteredCourses());
+        ArrayList<Integer> dropCourseIds = Validation.getValidatedCourseIds(Ids, getRegisteredCourses(), "is not registered");
         if(dropCourseIds.isEmpty()) {
             throw new ValidationException("Please select at least one valid course id to drop or enter 'back' to go back to the previous page\n");
         }

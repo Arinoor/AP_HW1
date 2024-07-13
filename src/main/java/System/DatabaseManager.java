@@ -11,7 +11,7 @@ import Exception.*;
 // Database course_registration_db has the following tables:
 // students table : student_id, password
 // admin table : admin_id, username, password
-// courses table : course_id, instructor_name, course_name, capacity, number_of_credits, exam_start_time, course_type,  department_id
+// courses table : course_id, instructor_name, course_name, capacity, credits, exam_start_time, course_type,  department_id
 // department table : department_id, department_name
 // registrations table : student_id, course_id
 // class_times table : course_id, day, start_time, end_time
@@ -65,7 +65,7 @@ public class DatabaseManager {
         close(connection);
     }
 
-    public void addDepartment(Department department) throws SQLException {
+    public static void addDepartment(Department department) throws SQLException {
         String query = "INSERT INTO departments (department_name) VALUES (?)";
         Connection connection = connect();
         PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -75,8 +75,8 @@ public class DatabaseManager {
         close(connection);
     }
 
-    public void addCourse(Course course) throws SQLException {
-        String query = "INSERT INTO courses (instructor_name, course_name, capacity, number_of_credits, exam_start_time, course_type, department_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    public static void addCourse(Course course) throws SQLException {
+        String query = "INSERT INTO courses (instructor_name, course_name, capacity, credits, exam_start_time, course_type, department_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
         Connection connection = connect();
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, course.getInstructorName());
@@ -92,13 +92,13 @@ public class DatabaseManager {
         addCourseClassTimes(course);
     }
 
-    private void addCourseClassTimes(Course course) throws SQLException {
+    private static void addCourseClassTimes(Course course) throws SQLException {
         String query = "INSERT INTO class_times (course_id, day, start_time, end_time) VALUES (?, ?, ?, ?)";
         Connection connection = connect();
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         for (ClassTime classTime : course.getClassTimes()) {
             preparedStatement.setInt(1, course.getCourseId());
-            preparedStatement.setString(2, classTime.getDay());
+            preparedStatement.setString(2, classTime.getDay().name());
             preparedStatement.setTime(3, Time.valueOf(classTime.getStartTime()));
             preparedStatement.setTime(4, Time.valueOf(classTime.getEndTime()));
             if(preparedStatement.executeUpdate() == 0)
@@ -143,7 +143,6 @@ public class DatabaseManager {
     }
 
     public static ArrayList<Course> getRegisteredCourses(int studentId) throws SQLException, DatabaseException {
-        check(studentId, "student_id", "students");
         String query = "SELECT course_id FROM registrations WHERE student_id = ?";
         Connection connection = connect();
         PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -158,8 +157,6 @@ public class DatabaseManager {
     }
 
     public static ArrayList<Course> getAvailableCourses(int studentId, int departmentId) throws SQLException, DatabaseException {
-        check(studentId, "student_id", "students");
-        check(departmentId, "department_id", "departments");
         String query = "SELECT * FROM courses WHERE department_id = ? AND course_id NOT IN (SELECT course_id FROM registrations WHERE student_id = ?)";
         Connection connection = connect();
         PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -204,6 +201,20 @@ public class DatabaseManager {
         return course;
     }
 
+    public static ArrayList<Integer> getCourseIds(int departmentId) throws SQLException, DatabaseException {
+        String query = "SELECT course_id FROM courses WHERE department_id = ?";
+        Connection connection = connect();
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setInt(1, departmentId);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        ArrayList<Integer> courseIds = new ArrayList<>();
+        while (resultSet.next()) {
+            courseIds.add(resultSet.getInt("course_id"));
+        }
+        close(connection);
+        return courseIds;
+    }
+
     public static Course getCourse(ResultSet courseResultSet) throws SQLException {
         int courseId = courseResultSet.getInt("course_id");
         ArrayList<ClassTime> classTimes = getClassTimes(courseId);
@@ -244,8 +255,6 @@ public class DatabaseManager {
     }
 
     public static boolean isRegistered(int studentId, int courseId) throws SQLException, DatabaseException {
-        check(studentId, "student_id", "students");
-        check(courseId, "course_id", "courses");
         String query = "SELECT EXISTS(SELECT 1 FROM registrations WHERE student_id = ? AND course_id = ?)";
         Connection connection = connect();
         PreparedStatement preparedStatement = connection.prepareStatement(query);

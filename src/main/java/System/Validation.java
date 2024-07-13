@@ -77,41 +77,29 @@ public class Validation {
         }
     }
 
-    public static ArrayList<Integer> getValidatedRegisterCourseIds(String[] registerCourseIds, ArrayList<Course> availableCourses) throws ValidationException {
-        // Ids should be a list of integers
-        // Ids should be in the availableCourses list
-        ArrayList<Integer> validatedRegisterCourseIds = new ArrayList<>();
-        for(String Id: registerCourseIds) {
-            if(Id.isBlank())
-                continue;
-            validateCourseId(Id);
-            int courseId = Integer.parseInt(Id);
-            if(availableCourses.stream().noneMatch(course -> course.getCourseId() == courseId)) {
-                throw new ValidationException(String.format("Course %d is not available", courseId));
-            }
-            if(!validatedRegisterCourseIds.contains(courseId)) {
-                validatedRegisterCourseIds.add(courseId);
-            }
+    public static void validateCapacity(String capacity) throws ValidationException {
+        // capacity should be a positive integer
+        if(!capacity.matches("\\d+") || Integer.parseInt(capacity) <= 0) {
+            throw new ValidationException("Capacity should be a positive integer");
         }
-        return validatedRegisterCourseIds;
     }
 
-    public static ArrayList<Integer> getValidatedDropCourseIds(String[] dropCourseIds, ArrayList<Course> registeredCourses) throws ValidationException {
+    public static ArrayList<Integer> getValidatedCourseIds(String[] courseIds, ArrayList<Course> courses, String validationMessage) throws ValidationException {
         // Ids should be a list of integers
         // Ids should be in the registeredCourses list
-        ArrayList<Integer> validatedDropCourseIds = new ArrayList<>();
-        for(String Id: dropCourseIds) {
+        ArrayList<Integer> validatedcourseIds = new ArrayList<>();
+        for(String Id: courseIds) {
             if(Id.isBlank())
                 continue;
             validateCourseId(Id);
             int courseId = Integer.parseInt(Id);
-            if(registeredCourses.stream().noneMatch(course -> course.getCourseId() == courseId)) {
-                throw new ValidationException(String.format("Course %d is not registered", courseId));
+            if(courses.stream().noneMatch(course -> course.getCourseId() == courseId)) {
+                throw new ValidationException(String.format("Course %d %s", courseId, validationMessage));
             }
-            if(!validatedDropCourseIds.contains(courseId)) {
-                validatedDropCourseIds.add(courseId);
+            if(!validatedcourseIds.contains(courseId)) {
+                validatedcourseIds.add(courseId);
             }
         }
-        return validatedDropCourseIds;
+        return validatedcourseIds;
     }
 }

@@ -7,5 +7,26 @@ public enum Day {
     THURSDAY,
     FRIDAY,
     SATURDAY,
-    SUNDAY
+    SUNDAY;
+
+    public static Day getDayByFirstTwoLetters(String day) {
+        switch (day) {
+            case "MO":
+                return MONDAY;
+            case "TU":
+                return TUESDAY;
+            case "WE":
+                return WEDNESDAY;
+            case "TH":
+                return THURSDAY;
+            case "FR":
+                return FRIDAY;
+            case "SA":
+                return SATURDAY;
+            case "SU":
+                return SUNDAY;
+            default:
+                return null;
+        }
+    }
 }

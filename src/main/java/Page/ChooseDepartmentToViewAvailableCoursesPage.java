@@ -19,7 +19,6 @@ public class ChooseDepartmentToViewAvailableCoursesPage extends Page {
     public ChooseDepartmentToViewAvailableCoursesPage(int studentId) {
         super(message);
         this.studentId = studentId;
-        showMessage();
         run();
     }
 

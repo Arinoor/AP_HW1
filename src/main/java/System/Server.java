@@ -28,6 +28,10 @@ public class Server {
         DatabaseManager.registerStudent(studentId, password);
     }
 
+    public static void addCourse(Course course) throws SQLException {
+        DatabaseManager.addCourse(course);
+    }
+
     public static void registerCourses(int studentId, ArrayList<Integer> registerCourseIds) throws ValidationException, SQLException, DatabaseException {
         ArrayList<Course> registerCourses = getCoursesByIds(registerCourseIds);
         ArrayList<Course> registeredCourses = getRegisteredCourses(studentId);
@@ -98,17 +102,26 @@ public class Server {
     }
 
     private static void dropCourse(int studentId, int courseId) throws ValidationException, SQLException, DatabaseException {
+        DatabaseManager.check(studentId, "student_id", "students");
+        DatabaseManager.check(courseId, "course_id", "courses");
         if(!DatabaseManager.isRegistered(studentId, courseId)) {
             throw new ValidationException(String.format("Course %d is not registered by student %d", courseId, studentId));
         }
     }
 
+    public static void increaseCapacity(int courseId, int extraCapacity) throws SQLException, DatabaseException{
+        DatabaseManager.check(courseId, "course_id", "courses");
+        DatabaseManager.changeCourseCapacity(courseId, extraCapacity);
+    }
 
     public static ArrayList<Course> getRegisteredCourses(int studentId) throws SQLException, DatabaseException {
+        DatabaseManager.check(studentId, "student_id", "students");
         return DatabaseManager.getRegisteredCourses(studentId);
     }
 
     public static ArrayList<Course> getAvailableCourses(int studentId, int departmentId) throws SQLException, DatabaseException {
+        DatabaseManager.check(studentId, "student_id", "students");
+        DatabaseManager.check(departmentId, "department_id", "departments");
         return DatabaseManager.getAvailableCourses(studentId, departmentId);
     }
 
@@ -119,6 +132,11 @@ public class Server {
             courses.add(course);
         }
         return courses;
+    }
+
+    public static ArrayList<Integer> getCourseIds(int departmentId) throws SQLException, DatabaseException {
+        DatabaseManager.check(departmentId, "department_id", "departments");
+        return DatabaseManager.getCourseIds(departmentId);
     }
 
     public static String getDepartmentName(int departmentId) throws SQLException, DatabaseException {

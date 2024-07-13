@@ -15,7 +15,6 @@ public class StudentHomePage extends Page {
     public StudentHomePage(int studentId) {
         super(message);
         this.studentId = studentId;
-        showMessage();
         run();
     }
 

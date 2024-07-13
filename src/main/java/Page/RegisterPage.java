@@ -14,7 +14,6 @@ public class RegisterPage extends Page {
 
     public RegisterPage() {
         super(message);
-        showMessage();
         run();
     }
 

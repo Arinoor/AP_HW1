@@ -17,7 +17,7 @@ public class ViewAvailableCoursesPage extends Page {
     public ViewAvailableCoursesPage(int studentId, int departmentId) throws SQLException, DatabaseException {
         super();
         setMessage();
-        showMessage(message);
+        showMessage();
         this.studentId = studentId;
         this.departmentId = departmentId;
         run();
@@ -56,7 +56,7 @@ public class ViewAvailableCoursesPage extends Page {
         checkBack(input);
         checkLogout(input);
         String[] Ids = input.split(" ");
-        ArrayList<Integer> registerCourseIds = Validation.getValidatedRegisterCourseIds(Ids, availableCourses);
+        ArrayList<Integer> registerCourseIds = Validation.getValidatedCourseIds(Ids, availableCourses, "is not available");
         if(registerCourseIds.isEmpty()) {
             throw new ValidationException("Please select at least one valid course id to register or enter 'back' to go back to the previous page\n");
         }
@@ -76,5 +76,6 @@ public class ViewAvailableCoursesPage extends Page {
                   "You can register one or more courses by entering their id separated by space\n" +
                   "Enter 'back' to go back to the previous menu\n" +
                   "Enter 'logout' to logout from the system\n";
+        super.setMessage(message);
     }
 }

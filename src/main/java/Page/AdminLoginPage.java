@@ -14,7 +14,6 @@ public class AdminLoginPage extends Page {
 
     public AdminLoginPage() {
         super(message);
-        showMessage();
         run();
     }
 

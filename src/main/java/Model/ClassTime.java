@@ -5,28 +5,28 @@ import java.sql.SQLException;
 import java.time.LocalTime;
 
 public class ClassTime {
-    private String day;
+    private Day day;
     private LocalTime startTime;
     private LocalTime endTime;
 
-    public ClassTime(String day, LocalTime startTime, LocalTime endTime) {
+    public ClassTime(Day day, LocalTime startTime, LocalTime endTime) {
         this.day = day;
         this.startTime = startTime;
         this.endTime = endTime;
     }
 
     public ClassTime(ResultSet resultSet) throws SQLException {
-        this.day = resultSet.getString("day");
+        this.day = Day.valueOf(resultSet.getString("day"));
         this.startTime = resultSet.getTime("start_time").toLocalTime();
         this.endTime = resultSet.getTime("end_time").toLocalTime();
     }
 
     // Getters and setters
-    public String getDay() {
+    public Day getDay() {
         return day;
     }
 
-    public void setDay(String day) {
+    public void setDay(Day day) {
         this.day = day;
     }
 

@@ -23,7 +23,6 @@ public class RegisterCourseConfirmationPage extends Page {
         this.studentId = studentId;
         this.departmentId = departmentId;
         this.registerCourseIds = registerCourseIds;
-        showMessage();
         run();
     }
 

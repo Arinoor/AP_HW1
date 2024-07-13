@@ -8,25 +8,25 @@ import java.util.List;
 
 public class Course {
     // We set our fields according to courses table in our database
-    // courses table : course_id, instructor_name, course_name, capacity, number_of_credits, exam_start_time, course_type,  department_id
+    // courses table : course_id, instructor_name, course_name, capacity, credits, exam_start_time, course_type,  department_id
     // class_times table : course_id, day, start_time, end_time
 
     private int courseId;
     private String instructorName;
     private String courseName;
     private int capacity;
-    private int number_of_credits;
+    private int credits;
     private ArrayList<ClassTime> classTimes;
     private Date examStartTime;
     private CourseType courseType;
     private int departmentId;
 
-    public Course (int courseId, String instructorName, String courseName, int capacity, int number_of_credits, ArrayList<ClassTime> classTimes, Date examStartTime, CourseType courseType, int departmentId) {
+    public Course (int courseId, String instructorName, String courseName, int capacity, int credits, ArrayList<ClassTime> classTimes, Date examStartTime, CourseType courseType, int departmentId) {
         this.courseId = courseId;
         this.instructorName = instructorName;
         this.courseName = courseName;
         this.capacity = capacity;
-        this.number_of_credits = number_of_credits;
+        this.credits = credits;
         this.classTimes = classTimes;
         this.examStartTime = examStartTime;
         this.courseType = courseType;
@@ -38,7 +38,7 @@ public class Course {
         this.instructorName = courseResultSet.getString("instructor_name");
         this.courseName = courseResultSet.getString("course_name");
         this.capacity = courseResultSet.getInt("capacity");
-        this.number_of_credits = courseResultSet.getInt("number_of_credits");
+        this.credits = courseResultSet.getInt("credits");
         this.classTimes = classTimes;
         this.examStartTime = courseResultSet.getDate("exam_start_time");
         this.courseType = CourseType.valueOf(courseResultSet.getString("course_type"));
@@ -77,7 +77,7 @@ public class Course {
     }
 
     public int getNumberOfCredits() {
-        return number_of_credits;
+        return credits;
     }
 
     public List<ClassTime> getClassTimes() {
@@ -102,7 +102,7 @@ public class Course {
                 ", instructorName='" + instructorName + '\'' +
                 ", courseName='" + courseName + '\'' +
                 ", capacity=" + capacity +
-                ", number_of_credits=" + number_of_credits +
+                ", credits=" + credits +
                 ", classTimes=" + classTimes +
                 ", examStartTime=" + examStartTime +
                 ", courseType=" + courseType +

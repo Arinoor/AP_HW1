@@ -6,15 +6,16 @@ import Exception.*;
 import Model.Course;
 
 public abstract class Page implements Runnable {
-    protected String message;
-    protected Scanner scanner = new Scanner(System.in);
+    private String message;
+    private Scanner scanner = new Scanner(System.in);
 
     public Page(){
-        System.out.println();
+
     }
 
     public Page(String message) {
         this.message = message;
+        showMessage();
     }
 
     public void showMessage() {
@@ -55,19 +56,19 @@ public abstract class Page implements Runnable {
     }
 
     public static void checkBack(String choice) throws NavigationBackException {
-        if(choice.equals("back")) {
+        if(choice.trim().toLowerCase().equals("back")) {
             throw new NavigationBackException();
         }
     }
 
     public static void checkCancel(String choice) throws NavigationCancelException {
-        if(choice.equals("cancel")) {
+        if(choice.trim().toLowerCase().equals("cancel")) {
             throw new NavigationCancelException();
         }
     }
 
     public static void checkLogout(String choice) throws NavigationLogoutException {
-        if(choice.equals("logout")) {
+        if(choice.trim().toLowerCase().equals("logout")) {
             throw new NavigationLogoutException();
         }
     }

@@ -19,7 +19,6 @@ public class DropCourseConfirmationPage extends Page {
         super(message);
         this.studentId = studentId;
         this.dropCourseIds = dropCourseIds;
-        showMessage();
         run();
     }
 
