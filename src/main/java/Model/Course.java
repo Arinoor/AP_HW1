@@ -2,6 +2,8 @@ package Model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,12 +19,23 @@ public class Course {
     private int capacity;
     private int credits;
     private ArrayList<ClassTime> classTimes;
-    private Date examStartTime;
+    private LocalDateTime examStartTime;
     private CourseType courseType;
     private int departmentId;
 
-    public Course (int courseId, String instructorName, String courseName, int capacity, int credits, ArrayList<ClassTime> classTimes, Date examStartTime, CourseType courseType, int departmentId) {
+    public Course (int courseId, String instructorName, String courseName, int capacity, int credits, ArrayList<ClassTime> classTimes, LocalDateTime examStartTime, CourseType courseType, int departmentId) {
         this.courseId = courseId;
+        this.instructorName = instructorName;
+        this.courseName = courseName;
+        this.capacity = capacity;
+        this.credits = credits;
+        this.classTimes = classTimes;
+        this.examStartTime = examStartTime;
+        this.courseType = courseType;
+        this.departmentId = departmentId;
+    }
+
+    public Course (String instructorName, String courseName, int capacity, int credits, ArrayList<ClassTime> classTimes, LocalDateTime examStartTime, CourseType courseType, int departmentId) {
         this.instructorName = instructorName;
         this.courseName = courseName;
         this.capacity = capacity;
@@ -39,10 +52,12 @@ public class Course {
         this.courseName = courseResultSet.getString("course_name");
         this.capacity = courseResultSet.getInt("capacity");
         this.credits = courseResultSet.getInt("credits");
-        this.classTimes = classTimes;
-        this.examStartTime = courseResultSet.getDate("exam_start_time");
         this.courseType = CourseType.valueOf(courseResultSet.getString("course_type"));
         this.departmentId = courseResultSet.getInt("department_id");
+        this.classTimes = classTimes;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String dateTimeString = courseResultSet.getString("exam_start_time");
+        this.examStartTime = LocalDateTime.parse(dateTimeString, formatter);
     }
 
     public boolean isExamTimeOverlapping(Course course) {
@@ -84,7 +99,7 @@ public class Course {
         return classTimes;
     }
 
-    public Date getExamStartTime() {
+    public LocalDateTime getExamStartTime() {
         return examStartTime;
     }
 
@@ -96,17 +111,21 @@ public class Course {
         return departmentId;
     }
 
+    public void setCourseId(int anInt) {
+        this.courseId = anInt;
+    }
+
     public String toString() {
-        return "Course{" +
-                "courseId=" + courseId +
+        return
+                "  courseId=" + courseId +
+                "  courseName='" + courseName + '\'' +
                 ", instructorName='" + instructorName + '\'' +
-                ", courseName='" + courseName + '\'' +
                 ", capacity=" + capacity +
                 ", credits=" + credits +
-                ", classTimes=" + classTimes +
-                ", examStartTime=" + examStartTime +
                 ", courseType=" + courseType +
                 ", departmentId=" + departmentId +
+                ", classTimes=" + classTimes +
+                ", examStartTime=" + examStartTime +
                 '}';
     }
 
@@ -126,5 +145,4 @@ public class Course {
         Course course = (Course) obj;
         return course.courseId == this.courseId;
     }
-
 }

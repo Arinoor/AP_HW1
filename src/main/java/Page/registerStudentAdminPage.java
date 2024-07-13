@@ -30,6 +30,7 @@ public class registerStudentAdminPage extends Page {
             ArrayList<Integer> temp = new ArrayList<>();
             temp.add(studentId);
             Server.registerCourses(courseId, temp);
+            showMessage("Student registered successfully");
             new ViewCourseAdminPage(courseId, departmentId);
         } catch (NavigationBackException | NavigationCancelException e) {
             new ViewCourseAdminPage(courseId, departmentId);

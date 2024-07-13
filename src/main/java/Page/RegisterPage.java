@@ -22,6 +22,7 @@ public class RegisterPage extends Page {
             int studentId = getStudentId();
             String password = getPassword();
             Server.registerStudent(studentId, password);
+            showMessage("Registered successfully");
             new StudentHomePage(studentId);
         } catch (NavigationBackException e) {
             new HomePage();

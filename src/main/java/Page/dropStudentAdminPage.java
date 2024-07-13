@@ -30,6 +30,7 @@ public class dropStudentAdminPage extends Page {
             ArrayList<Integer> temp = new ArrayList<>();
             temp.add(studentId);
             Server.dropCourses(courseId, temp);
+            showMessage("Student dropped successfully");
             new ViewCourseAdminPage(courseId, departmentId);
         } catch (NavigationBackException | NavigationCancelException e) {
             new ViewCourseAdminPage(courseId, departmentId);

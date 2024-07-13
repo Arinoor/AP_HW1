@@ -7,9 +7,9 @@ import Exception.*;
 import System.*;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class AddCoursePage extends Page {
 
@@ -27,28 +27,18 @@ public class AddCoursePage extends Page {
         run();
     }
 
-    private int courseId;
-    private String instructorName;
-    private String courseName;
-    private int capacity;
-    private int credits;
-    private ArrayList<ClassTime> classTimes;
-    private Date examStartTime;
-    private CourseType courseType;
-
     public void run() {
         try {
-            int courseId = getCourseId();
+            String courseName = getCourseName();
+            CourseType courseType = getCourseType();
             int numberOfClassTimes = getNumberOfClassTimes();
             ArrayList<ClassTime> classTimes = getClassTimes(numberOfClassTimes);
-            Date examStartTime = getExamStartTime();
-            String instructorName = getInstructorName();
-            String courseName = getCourseName();
+            LocalDateTime examStartTime = getExamStartTime();
+            String instructorName = getInstructorName(classTimes, examStartTime);
             int capacity = getCapacity();
             int credits = getCredits();
-            CourseType courseType = getCourseType();
 
-            Course course = new Course(courseId, instructorName, courseName, capacity, credits, classTimes, examStartTime, courseType, departmentID);
+            Course course = new Course(instructorName, courseName, capacity, credits, classTimes, examStartTime, courseType, departmentID);
             Server.addCourse(course);
             new ViewCoursesAdminPage(departmentID);
 
@@ -79,7 +69,7 @@ public class AddCoursePage extends Page {
         return Integer.parseInt(input);
     }
 
-    private String getInstructorName() throws NavigationException, ValidationException, SQLException {
+    private String getInstructorName(ArrayList<ClassTime> classTimes, LocalDateTime examStartTime) throws NavigationException, ValidationException, SQLException {
         String input = getInput("Enter instructor name: ");
         checkNavigation(input);
         Validation.validateNewInstructorName(input, classTimes, examStartTime);
@@ -143,16 +133,16 @@ public class AddCoursePage extends Page {
     private LocalTime getStartTime() throws NavigationException, ValidationException {
         String input = getInput("Enter start time in hh:mm format: ");
         checkNavigation(input);
-        return Validation.validateClassTime(input);
+        return Validation.validateClassStartTime(input);
     }
 
     private LocalTime getEndTime() throws NavigationException, ValidationException {
         String input = getInput("Enter end time in hh:mm format: ");
         checkNavigation(input);
-        return Validation.validateClassTime(input);
+        return Validation.validateClassEndTime(input);
     }
 
-    private Date getExamStartTime() throws NavigationException, ValidationException {
+    private LocalDateTime getExamStartTime() throws NavigationException, ValidationException {
         String input = getInput("Enter exam start time in yyyy-MM-dd hh:mm format: ");
         checkNavigation(input);
         return Validation.validateExamStartTime(input);

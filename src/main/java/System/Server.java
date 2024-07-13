@@ -61,38 +61,6 @@ public class Server {
         registeredCourses.add(course);
     }
 
-    private static int getTotalGeneralCredits(ArrayList<Course> registeredCourses) {
-        int totalGeneralCredits = 0;
-        for(Course course : registeredCourses) {
-            if(course.getCourseType() == CourseType.GENERAL) {
-                totalGeneralCredits += course.getNumberOfCredits();
-            }
-        }
-        return totalGeneralCredits;
-    }
-
-    private static int getTotalCredits(ArrayList<Course> courses) {
-        int totalCredits = 0;
-        for(Course course : courses) {
-            totalCredits += course.getNumberOfCredits();
-        }
-        return totalCredits;
-    }
-
-    private static void checkTimeConflict(Course course, ArrayList<Course> registeredCourses) throws ValidationException {
-        for(Course registeredCourse : registeredCourses) {
-            if(registeredCourse.equals(course)) {
-                continue;
-            }
-            if(course.isExamTimeOverlapping(registeredCourse)) {
-                throw new ValidationException(String.format("Course %d exam time is overlapping with course %d", course.getCourseId(), registeredCourse.getCourseId()));
-            }
-            if(course.isClassTimeOverlapping(registeredCourse)) {
-                throw new ValidationException(String.format("Course %d class time is overlapping with course %d", course.getCourseId(), registeredCourse.getCourseId()));
-            }
-        }
-    }
-
     public static void dropCourses(int studentId, ArrayList<Integer> dropCourseIds) throws ValidationException, SQLException, DatabaseException {
         for(int courseId : dropCourseIds) {
             dropCourse(studentId, courseId);
@@ -140,12 +108,44 @@ public class Server {
         return DatabaseManager.getCourseIds(departmentId);
     }
 
+    public static ArrayList<Department> getDepartments() throws SQLException {
+        return DatabaseManager.getDepartments();
+    }
+
     public static String getDepartmentName(int departmentId) throws SQLException, DatabaseException {
         return DatabaseManager.getDepartmentName(departmentId);
     }
 
-    public static ArrayList<Department> getDepartments() throws SQLException {
-        return DatabaseManager.getDepartments();
+    private static int getTotalGeneralCredits(ArrayList<Course> registeredCourses) {
+        int totalGeneralCredits = 0;
+        for(Course course : registeredCourses) {
+            if(course.getCourseType() == CourseType.GENERAL) {
+                totalGeneralCredits += course.getNumberOfCredits();
+            }
+        }
+        return totalGeneralCredits;
+    }
+
+    private static int getTotalCredits(ArrayList<Course> courses) {
+        int totalCredits = 0;
+        for(Course course : courses) {
+            totalCredits += course.getNumberOfCredits();
+        }
+        return totalCredits;
+    }
+
+    private static void checkTimeConflict(Course course, ArrayList<Course> registeredCourses) throws ValidationException {
+        for(Course registeredCourse : registeredCourses) {
+            if(registeredCourse.equals(course)) {
+                continue;
+            }
+            if(course.isExamTimeOverlapping(registeredCourse)) {
+                throw new ValidationException(String.format("Course %d exam time is overlapping with course %d", course.getCourseId(), registeredCourse.getCourseId()));
+            }
+            if(course.isClassTimeOverlapping(registeredCourse)) {
+                throw new ValidationException(String.format("Course %d class time is overlapping with course %d", course.getCourseId(), registeredCourse.getCourseId()));
+            }
+        }
     }
 
     private static void initializeDepartments() {
@@ -160,7 +160,20 @@ public class Server {
         }
     }
 
+    private static void initializeCourses() {
+        ArrayList<Course> courses = Config.courses;
+        for(Course course : courses) {
+            try {
+                DatabaseManager.addCourse(course);
+            } catch (SQLException e) {
+                System.out.println("Error occurred while adding course " + course);
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
     public static void main(String[] args) {
         initializeDepartments();
+        initializeCourses();
     }
 }

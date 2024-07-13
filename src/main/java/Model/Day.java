@@ -9,24 +9,12 @@ public enum Day {
     SATURDAY,
     SUNDAY;
 
-    public static Day getDayByFirstTwoLetters(String day) {
-        switch (day) {
-            case "MO":
-                return MONDAY;
-            case "TU":
-                return TUESDAY;
-            case "WE":
-                return WEDNESDAY;
-            case "TH":
-                return THURSDAY;
-            case "FR":
-                return FRIDAY;
-            case "SA":
-                return SATURDAY;
-            case "SU":
-                return SUNDAY;
-            default:
-                return null;
+    public static Day getDayByStart(String day) {
+        for(Day d : Day.values()) {
+            if(d.toString().startsWith(day.toUpperCase())) {
+                return d;
+            }
         }
+        return null;
     }
 }

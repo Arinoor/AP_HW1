@@ -42,7 +42,10 @@ public abstract class Page implements Runnable {
     }
 
     public static void showExceptionMessage(Exception e) {
-        showMessage("Unexpected error occurred\n" + e.getMessage());
+        System.out.println("Unexpected error occurred\n" + e.getMessage());
+        for (StackTraceElement ste : e.getStackTrace()) {
+            System.out.println(ste.toString());
+        }
     }
 
     public static void invalidChoice() {
@@ -67,12 +70,14 @@ public abstract class Page implements Runnable {
 
     public static void checkCancel(String choice) throws NavigationCancelException {
         if(choice.trim().toLowerCase().equals("cancel")) {
+            showMessage("process cancelled");
             throw new NavigationCancelException();
         }
     }
 
     public static void checkLogout(String choice) throws NavigationLogoutException {
         if(choice.trim().toLowerCase().equals("logout")) {
+            showMessage("logged out");
             throw new NavigationLogoutException();
         }
     }

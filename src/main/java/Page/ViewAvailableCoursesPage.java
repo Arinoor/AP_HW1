@@ -16,10 +16,10 @@ public class ViewAvailableCoursesPage extends Page {
 
     public ViewAvailableCoursesPage(int studentId, int departmentId) throws SQLException, DatabaseException {
         super();
-        setMessage();
-        showMessage();
         this.studentId = studentId;
         this.departmentId = departmentId;
+        setMessage();
+        showMessage();
         run();
     }
 

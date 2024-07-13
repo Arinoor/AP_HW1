@@ -77,19 +77,22 @@ public class DatabaseManager {
     }
 
     public static void addCourse(Course course) throws SQLException {
-        String query = "INSERT INTO courses (course_id, instructor_name, course_name, capacity, credits, exam_start_time, course_type, department_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO courses (instructor_name, course_name, capacity, credits, exam_start_time, course_type, department_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
         Connection connection = connect();
-        PreparedStatement preparedStatement = connection.prepareStatement(query);
-        preparedStatement.setInt(1, course.getCourseId());
-        preparedStatement.setString(2, course.getInstructorName());
-        preparedStatement.setString(3, course.getCourseName());
-        preparedStatement.setInt(4, course.getCapacity());
-        preparedStatement.setInt(5, course.getNumberOfCredits());
-        preparedStatement.setDate(6, (Date) course.getExamStartTime());
-        preparedStatement.setString(7, course.getCourseType().name());
-        preparedStatement.setInt(8, course.getDepartmentId());
+        PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        preparedStatement.setString(1, course.getInstructorName());
+        preparedStatement.setString(2, course.getCourseName());
+        preparedStatement.setInt(3, course.getCapacity());
+        preparedStatement.setInt(4, course.getNumberOfCredits());
+        preparedStatement.setTimestamp(5, Timestamp.valueOf(course.getExamStartTime()));
+        preparedStatement.setString(6, course.getCourseType().name());
+        preparedStatement.setInt(7, course.getDepartmentId());
         if(preparedStatement.executeUpdate() == 0)
             throw new SQLException("Error while adding course");
+        ResultSet resultSet = preparedStatement.getGeneratedKeys();
+        resultSet.next();
+        int courseId = resultSet.getInt(1);
+        course.setCourseId(courseId);
         close(connection);
         addCourseClassTimes(course);
     }
@@ -145,7 +148,7 @@ public class DatabaseManager {
     }
 
     public static ArrayList<Course> getRegisteredCourses(int studentId) throws SQLException, DatabaseException {
-        String query = "SELECT course_id FROM registrations WHERE student_id = ?";
+        String query = "SELECT * FROM courses WHERE course_id IN (SELECT course_id FROM registrations WHERE student_id = ?)";
         Connection connection = connect();
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setInt(1, studentId);
@@ -193,11 +196,8 @@ public class DatabaseManager {
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setInt(1, courseId);
         ResultSet courseResultSet = preparedStatement.executeQuery();
-        try {
-            courseResultSet.next();
-        } catch (SQLException e) {
+        if(!courseResultSet.next())
             throw new DatabaseException(String.format("Course with id %d not found", courseId));
-        }
         Course course = getCourse(courseResultSet);
         close(connection);
         return course;
@@ -243,11 +243,8 @@ public class DatabaseManager {
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setInt(1, departmentId);
         ResultSet resultSet = preparedStatement.executeQuery();
-        try {
-            resultSet.next();
-        } catch (SQLException e) {
+        if(!resultSet.next())
             throw new DatabaseException(String.format("Department with id %d not found", departmentId));
-        }
         String departmentName = resultSet.getString("department_name");
         close(connection);
         return departmentName;

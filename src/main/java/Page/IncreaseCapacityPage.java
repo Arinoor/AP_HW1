@@ -26,6 +26,7 @@ public class IncreaseCapacityPage extends Page {
         try {
             int capacity = getCapacity();
             Server.increaseCapacity(courseId, capacity);
+            showMessage("Capacity increased successfully");
             new ViewCourseAdminPage(courseId, departmentId);
         } catch (NavigationBackException | NavigationCancelException e) {
             new ViewCourseAdminPage(courseId, departmentId);

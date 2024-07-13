@@ -22,6 +22,7 @@ public class StudentLoginPage extends Page {
             int studentId = getStudentId();
             String password = getPassword();
             Server.loginStudent(studentId, password);
+            showMessage("Login successful");
             new StudentHomePage(studentId);
         } catch (NavigationBackException e) {
             new LoginPage();
